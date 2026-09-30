@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nopal &amp; Zahra</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--page:#FFF3EE;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#1a0f1c}}
+:root[data-theme="dark"]{--page:#1a0f1c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--page);overflow:hidden;font-family:"DM Sans",system-ui,sans-serif}
+#holder{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--page)}
+#stage{position:relative;width:1280px;height:720px;flex:none;transform-origin:center;overflow:hidden;border-radius:22px;background:var(--wp,linear-gradient(155deg,#f0507c,#ff8a6b 48%,#7d5cf0));color:#fff}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:dr 14s ease-in-out infinite alternate}
+.b1{width:420px;height:420px;background:#ff5f8d;left:-80px;top:-60px}.b2{width:520px;height:520px;background:#ffd86b;right:-120px;top:120px;animation-delay:-5s}.b3{width:420px;height:420px;background:#8f7bff;left:380px;bottom:-200px;animation-delay:-9s}
+@keyframes dr{to{transform:translate(60px,40px) scale(1.15)}}
+.hh{position:absolute;bottom:-40px;opacity:0;animation:up linear infinite}
+@keyframes up{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.7}100%{transform:translateY(-820px) rotate(30deg);opacity:0}}
+#sb{position:absolute;left:0;right:0;top:0;height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 34px;font-weight:700;font-size:20px;z-index:2}
+.w{position:absolute;background:rgba(255,255,255,.18);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.42);border-radius:34px;box-shadow:0 14px 40px -16px rgba(90,20,70,.5);text-shadow:0 1px 8px rgba(90,20,70,.3)}
+.in{opacity:0;animation:pop .7s cubic-bezier(.2,1.5,.4,1) var(--d,0s) forwards}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.9)}to{opacity:1;transform:none}}
+.clock{left:56px;top:66px;width:470px;height:222px;padding:20px 34px}
+#ck{font:600 104px/1 Fraunces,Georgia,serif;letter-spacing:-.02em}
+#dt{font-size:24px;font-weight:500;margin-top:10px;text-transform:capitalize}
+.cnt{left:56px;top:304px;width:470px;height:256px;padding:14px 30px;cursor:pointer;text-align:center}
+.nm{font:italic 600 44px/1.1 Fraunces,Georgia,serif}.nm i{font-style:normal;display:inline-block;animation:beat 1.4s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}20%{transform:scale(1.28)}40%{transform:scale(1)}60%{transform:scale(1.2)}}
+.fn{font-size:15px;opacity:.92;margin-top:4px}
+#dn{font:600 84px/1 Fraunces,Georgia,serif;margin-top:8px}
+#dl{font-size:19px;font-weight:500}#ym{font-size:16px;opacity:.92;margin-top:2px}
+.ph{left:556px;top:66px;width:668px;height:340px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .cp{position:absolute;left:0;right:0;bottom:0;padding:44px 26px 20px;background:linear-gradient(transparent,rgba(60,10,45,.7));text-align:left;font-size:20px;font-weight:700}
+.ph .cp small{display:block;font-weight:500;opacity:.9;font-size:15px}
+.ph .em{font-size:19px;font-weight:500;padding:0 60px}.ph .em b{display:block;font-size:56px;margin-bottom:6px}
+.row3{position:absolute;left:556px;top:430px;width:668px;display:flex;gap:46px;padding-left:16px}
+.ic{background:none;border:0;color:#fff;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 1px 6px rgba(90,20,70,.5);font-size:16px;font-weight:700}
+.ic .sq{width:92px;height:92px;border-radius:29px;display:flex;align-items:center;justify-content:center;font-size:46px;box-shadow:0 12px 24px -8px rgba(60,10,40,.5),inset 0 1px 0 rgba(255,255,255,.55);transition:transform .2s}
+.ic:hover .sq{transform:translateY(-5px) scale(1.04)}.ic:active .sq{transform:scale(.9)}
+.dock{left:330px;right:330px;bottom:24px;height:120px;border-radius:40px;display:flex;justify-content:space-around;align-items:center;padding:0 14px}
+.dock .ic span:last-child{display:none}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:4px solid #FFD23F;outline-offset:3px}
+#app{position:absolute;inset:0;display:none;z-index:8;background:rgba(60,15,45,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#app.on{display:block;animation:fi .25s}
+@keyframes fi{from{opacity:0}}
+.win{position:absolute;left:56px;right:56px;top:50px;bottom:34px;background:rgba(255,251,250,.97);color:#3B2030;border-radius:34px;box-shadow:0 30px 80px -20px rgba(60,10,40,.6);display:flex;flex-direction:column;overflow:hidden;animation:zoom .38s cubic-bezier(.2,1.3,.4,1);text-shadow:none}
+@keyframes zoom{from{transform:scale(.8);opacity:0}}
+.win header{display:flex;align-items:center;gap:18px;padding:14px 26px;border-bottom:1px solid #f1d5dc}
+.win h2{font:600 32px Fraunces,Georgia,serif;margin:0}
+#bk{background:#ffe1e8;color:#c2274f;border:0;border-radius:99px;padding:8px 20px;font:inherit;font-weight:700;font-size:18px;cursor:pointer}
+#ab{flex:1;overflow:auto;padding:20px 26px;font-size:18px}
+.cols{display:flex;gap:26px;height:100%}.fm{width:340px;flex:none;overflow:auto;padding:0 4px 8px 0}.ls{flex:1;overflow:auto;padding-right:4px}
+label{display:block;font-size:14px;color:#8A6B78;margin:10px 0 4px;font-weight:700}
+.win input,.win textarea{width:100%;font:inherit;font-size:17px;color:#3B2030;background:#fff7f5;border:1.5px solid #f1d5dc;border-radius:14px;padding:10px 14px}
+.win textarea{resize:vertical;min-height:80px}
+.pri{background:#E8476F;color:#fff;border:0;border-radius:14px;padding:12px 22px;font:inherit;font-weight:700;font-size:18px;cursor:pointer;margin-top:14px}
+.x{background:none;border:0;color:#8A6B78;font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;padding:4px 0}
+.it{display:flex;gap:14px;background:#fff;border:1px solid #f1d5dc;border-radius:20px;padding:12px;margin-bottom:12px;align-items:center}
+.it img{width:130px;height:130px;object-fit:cover;border-radius:14px;flex:none}
+.it h3{margin:0 0 4px;font:600 21px Fraunces,Georgia,serif}.it p{margin:0 0 4px;line-height:1.45;white-space:pre-wrap}
+.mut{color:#8A6B78;font-size:14px}.empty{text-align:center;color:#8A6B78;padding:40px 10px}
+#pv{display:none;width:100%;max-height:150px;object-fit:cover;border-radius:14px;margin-top:8px}
+.disc{flex:none;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,#fff7f5 0 7px,#E8476F 8px 13px,#2b1a2c 14px);animation:sp 6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.it a{color:#E8476F;font-weight:700}
+.paper{width:100%;height:calc(100% - 30px);background:repeating-linear-gradient(transparent 0 35px,#f1d5dc 35px 36px);background-color:#fff;font:italic 600 21px/36px Fraunces,Georgia,serif!important;border-radius:18px;padding:0 22px!important;resize:none}
+.wl{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid #f1d5dc}
+.win .wl input[type=checkbox]{width:24px;height:24px;accent-color:#E8476F;flex:none;padding:0}
+.wl span{flex:1}.wl.d span{text-decoration:line-through;color:#8A6B78}
+.bar{height:9px;border-radius:9px;background:#ffe1e8;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:#E8476F;width:0;transition:width .4s}
+.qq{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+.qq p{font:italic 600 34px/1.4 Fraunces,Georgia,serif;max-width:800px;margin:0}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cd{background:#fff;border:1px solid #f1d5dc;border-radius:20px;padding:16px;text-align:center}
+.cd b{display:block;font:600 40px Fraunces,Georgia,serif;color:#E8476F}.cd small{color:#8A6B78;font-size:15px}
+#ts{position:absolute;left:50%;bottom:150px;transform:translate(-50%,20px);background:#3B2030;color:#fff;padding:10px 22px;border-radius:99px;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:12}
+#ts.on{opacity:1;transform:translate(-50%,0)}
+.pgx{position:absolute;inset:0;transition:transform .55s cubic-bezier(.3,1,.4,1)}
+#p2{transform:translateX(100%)}.pg2 #p1{transform:translateX(-100%)}.pg2 #p2{transform:none}
+.pnl{left:56px;top:66px;width:1168px;height:490px}.g3{display:grid;grid-template-columns:repeat(3,1fr);place-items:center;height:100%}
+.dots{position:absolute;bottom:5px;left:0;right:0;display:flex;justify-content:center;gap:12px;z-index:3}
+.dt{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.5);padding:0;cursor:pointer}.dt.on{background:#fff;width:26px;border-radius:9px}
+#sb{position:absolute}#lv{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:99px;padding:3px 16px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;z-index:3}
+#nxe{font-size:17px;font-weight:700;margin-top:6px}
+.bh{position:absolute;bottom:80px;z-index:15;pointer-events:none;opacity:0;animation:bur 2.2s ease-out forwards}
+@keyframes bur{0%{opacity:1;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(var(--dx),-560px) scale(1.2) rotate(20deg)}}
+#lock{position:absolute;inset:0;z-index:20;background:rgba(70,10,60,.28);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;text-align:center;transition:transform .6s cubic-bezier(.6,0,.3,1),opacity .6s}
+#lock.up{transform:translateY(-105%);opacity:.4}#lck{font:600 150px/1 Fraunces,Georgia,serif}#ldt{font-size:28px;text-transform:capitalize}
+.lkn{font:italic 600 46px Fraunces,Georgia,serif;margin-top:26px}.lkn i{font-style:normal;display:inline-block;animation:beat 1.4s infinite}
+#ldn{font-size:24px;font-weight:500}#lock p{margin:30px 0 0;font-weight:700;letter-spacing:.06em;animation:bl 2s infinite}@keyframes bl{50%{opacity:.4}}
+#nt{position:absolute;left:50%;top:-150px;transform:translateX(-50%);width:580px;background:rgba(255,255,255,.94);color:#3B2030;border-radius:24px;padding:14px 22px;z-index:25;transition:top .55s cubic-bezier(.2,1.4,.4,1);box-shadow:0 20px 50px -14px rgba(60,10,40,.5);text-shadow:none;font-size:18px}
+#nt.on{top:16px}#nt b{display:block;font-size:14px;color:#c2274f;margin-bottom:2px}
+.ch{display:flex;flex-direction:column;height:100%}.cm{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px}
+.mg{display:flex}.mg.r{justify-content:flex-end}.bb{max-width:70%;background:#efe3ff;border-radius:20px 20px 20px 6px;padding:10px 16px;line-height:1.4}
+.mg.r .bb{background:#E8476F;color:#fff;border-radius:20px 20px 6px 20px}.bb small{display:block;font-size:12px;opacity:.75;margin-top:2px}.bb .x{color:inherit;font-size:12px;padding:0 0 0 6px}
+.cb{display:flex;gap:10px;align-items:center;padding-top:12px}.cb input{flex:1}.sw{border:2px solid #f1d5dc;background:#fff;border-radius:99px;padding:8px 16px;font:inherit;font-weight:700;color:#8A6B78;cursor:pointer}.sw.on{background:#E8476F;color:#fff;border-color:#E8476F}
+.jres{margin:14px auto;max-width:640px;background:#ffe1e8;border-radius:22px;padding:18px 24px;font:italic 600 24px/1.4 Fraunces,Georgia,serif;text-align:center;animation:zoom .5s}.jres:empty{display:none}
+.swg{display:flex;flex-wrap:wrap;gap:10px}.sq2{width:42px;height:42px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #f1d5dc;cursor:pointer;padding:0}
+.pic .blob{display:none}.ic .sq{position:relative}
+.bdg{position:absolute;top:-6px;right:-6px;background:#ff3b5c;color:#fff;border-radius:99px;min-width:28px;height:28px;padding:0 6px;font:800 16px Poppins,sans-serif;display:none;align-items:center;justify-content:center;border:3px solid #fff;font-style:normal}
+.cbar{display:flex;gap:8px;align-items:center;padding-bottom:10px}.cst{font-size:14px;color:#8A6B78;font-weight:600}
+@media (prefers-reduced-motion:reduce){.hh,.blob,.nm i,.disc{animation:none}.in{animation-duration:.01s}}
+</style></head><body>
+<div id="holder"><div id="stage">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div id="sb"><span id="sbt"></span><button id="lv">&hearts; Kirim sayang</button><span>&#128246; &#128267;</span></div>
+<div class="pgx" id="p1"><div class="w clock in"><div id="ck"></div><div id="dt"></div><div id="nxe"></div></div>
+<div class="w cnt in" style="--d:.15s" data-app="set" role="button" tabindex="0" aria-label="Pengaturan tanggal jadian">
+ <div class="nm">Nopal <i>&hearts;</i> Zahra</div><div class="fn">Muhammad Naufal Alfarizi &amp; Zahra Nadia Pratiwi</div>
+ <div id="dn">?</div><div id="dl">hari bersama</div><div id="ym"></div></div>
+<div class="w ph in" style="--d:.3s" data-app="mem" id="ph" role="button" tabindex="0" aria-label="Buka Memory"></div>
+<div class="row3">
+ <button class="ic in" style="--d:.5s" data-app="qt"><span class="sq" style="background:linear-gradient(145deg,#2ed3b7,#1a9fb8)">&#128172;</span><span>Kata Hati</span></button>
+ <button class="ic in" style="--d:.6s" data-app="cal"><span class="sq" style="background:linear-gradient(145deg,#6aa8ff,#4b6cf0)">&#128197;</span><span>Kalender</span></button>
+ <button class="ic in" style="--d:.7s" data-app="set"><span class="sq" style="background:linear-gradient(145deg,#a8a4b8,#6f6a85)">&#9881;&#65039;</span><span>Pengaturan</span></button>
+</div>
+</div><div class="pgx" id="p2"></div><div class="w dock in" style="--d:.8s">
+ <button class="ic" data-app="mem" aria-label="Memory"><span class="sq" style="background:linear-gradient(145deg,#ff8fb0,#ee4d86)">&#128248;</span><span>Memory</span></button>
+ <button class="ic" data-app="pl" aria-label="Playlist"><span class="sq" style="background:linear-gradient(145deg,#b58cff,#7b4de8)">&#127925;</span><span>Playlist</span></button>
+ <button class="ic" data-app="sr" aria-label="Surat"><span class="sq" style="background:linear-gradient(145deg,#ff7a7a,#e63a4d)">&#128140;</span><span>Surat</span></button>
+ <button class="ic" data-app="wl" aria-label="Wishlist"><span class="sq" style="background:linear-gradient(145deg,#ffd76a,#ff9f3a)">&#10024;</span><span>Wishlist</span></button>
+</div>
+<div class="dots"><button class="dt on" id="d0" aria-label="Halaman 1"></button><button class="dt" id="d1" aria-label="Halaman 2"></button></div><div id="app"><div class="win"><header><button id="bk">&lsaquo; Kembali</button><h2 id="at"></h2></header><div id="ab"></div></div></div>
+<div id="ts" role="status"></div><div id="nt" role="status"></div><div id="lock" role="button" tabindex="0" aria-label="Buka kunci layar"><div id="lck"></div><div id="ldt"></div><div class="lkn">Nopal <i>&hearts;</i> Zahra</div><div id="ldn"></div><p>Ketuk untuk membuka</p></div>
+</div></div>
+<script>
+const $=s=>document.querySelector(s),K='naufal-zahra-v1',st=$('#stage');
+const DEF=()=>({date:'',mem:[],pl:[],wl:[],letter:'',chat:[],jar:[],ev:[],wall:0,snd:true,me:null,seen:0,loveSeen:0,qt:[],qo:false,wc:null,wimg:''});let D=DEF(),cur=null;
+try{const r=localStorage.getItem(K);if(r)D=Object.assign(D,JSON.parse(r))}catch(e){}
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function toast(t){const e=$('#ts');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+function save(){try{localStorage.setItem(K,JSON.stringify(D));return true}catch(e){toast('Penyimpanan penuh atau tidak tersedia');return false}}
+const fmt=d=>d?new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}):'';
+const dm=(y,m,d)=>new Date(y,m,Math.min(d,new Date(y,m+1,0).getDate()));
+function fit(){const w=innerWidth,h=innerHeight,p=h>w;const s=p?Math.min(h/1280,w/720):Math.min(w/1280,h/720);st.style.transform=(p?'rotate(90deg) ':'')+'scale('+s*.98+')'}
+addEventListener('resize',fit);fit();
+st.insertAdjacentHTML('afterbegin',Array.from({length:14},(_,i)=>`<span class="hh" style="left:${(i*73)%1240}px;font-size:${16+(i*7)%22}px;animation-duration:${11+(i*3)%8}s;animation-delay:${-i*1.3}s">&hearts;</span>`).join(''));
+const QT=['Hari biasa pun jadi spesial kalau ada kamu.','Terima kasih sudah bertahan, bahkan di hari-hari yang berat.','Kamu alasan aku senyum tanpa sadar.','Pelan-pelan, kita tumbuh bareng.','Apa pun rencananya, aku mau kamu ada di dalamnya.','Cerita kita belum selesai, masih banyak bab indah di depan.','Sama kamu, semuanya terasa cukup.','Kamu tempat paling nyaman buat pulang.','Jarak dan sibuk boleh datang, hati ini tetap alamatnya kamu.','Tertawa bareng kamu itu bagian favoritku dari hari ini.'];
+function widgets(){
+ const n=new Date(),tm=n.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace('.',':');
+ $('#ck').textContent=tm;$('#sbt').textContent=tm;$('#dt').textContent=n.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long'});
+ if(!D.date){$('#dn').textContent='?';$('#dl').textContent='Ketuk untuk isi tanggal jadian';$('#ym').textContent=''}
+ else{const t=new Date(n);t.setHours(0,0,0,0);const s=new Date(D.date+'T00:00:00'),days=Math.floor((t-s)/864e5);
+  if(days<0){$('#dn').textContent='0';$('#dl').textContent='hari bersama';$('#ym').textContent='Tanggal jadiannya masih di masa depan'}
+  else{$('#dn').textContent=days.toLocaleString('id-ID');$('#dl').textContent='hari bersama';
+   let y=t.getFullYear()-s.getFullYear(),m=t.getMonth()-s.getMonth(),d=t.getDate()-s.getDate();
+   if(d<0){m--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}if(m<0){y--;m+=12}
+   $('#ym').textContent=[y?y+' tahun':'',m?m+' bulan':'',d?d+' hari':''].filter(Boolean).join(' ')}}
+ const L=[...D.mem].sort((a,b)=>(b.d||'').localeCompare(a.d||'')),p=L.find(m=>m.img)||L[0];
+ $('#ph').innerHTML=p?`${p.img?`<img src="${p.img}" alt="Foto ${esc(p.t)}">`:'<div class="em"><b>&#128142;</b></div>'}<div class="cp">${esc(p.t)}<small>${fmt(p.d)}</small></div>`:'<div class="em"><b>&#128247;</b>Belum ada kenangan. Ketuk di sini untuk menyimpan momen pertama kalian.</div>';
+}
+{const _w=widgets;widgets=function(){_w();extra()}}setInterval(widgets,15000);
+/* ---- apps ---- */
+const A={
+ mem:{t:'Memory',h:()=>`<div class="cols"><div class="fm"><label for="mt">Judul</label><input id="mt" maxlength="60" placeholder="Contoh: Pertama kali jalan berdua"><label for="md">Tanggal</label><input id="md" type="date"><label for="ms">Ceritanya</label><textarea id="ms" placeholder="Apa yang kamu rasain waktu itu?"></textarea><label for="mf">Foto (opsional)</label><input id="mf" type="file" accept="image/*"><img id="pv" alt="Pratinjau foto"><button class="pri" id="madd">Simpan kenangan</button></div><div class="ls" id="ml"></div></div>`,
+  list(){const L=[...D.mem].sort((a,b)=>(b.d||'').localeCompare(a.d||''));$('#ml').innerHTML=L.length?L.map(m=>`<article class="it">${m.img?`<img src="${m.img}" alt="Foto ${esc(m.t)}">`:''}<div style="flex:1"><span class="mut">${fmt(m.d)}</span><h3>${esc(m.t)}</h3><p>${esc(m.s)}</p><button class="x" data-k="mem" data-i="${m.id}">Hapus</button></div></article>`).join(''):'<p class="empty">Belum ada kenangan. Tulis yang pertama &#128158;</p>'},
+  init(){let pend='';$('#md').value=new Date().toLocaleDateString('sv-SE');
+   $('#mf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,640/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);pend=c.toDataURL('image/jpeg',.72);const p=$('#pv');p.src=pend;p.style.display='block'};im.src=r.result};r.readAsDataURL(f)};
+   $('#madd').onclick=()=>{const t=$('#mt').value.trim();if(!t){toast('Isi judulnya dulu ya');return}
+    D.mem.push({id:uid(),t,d:$('#md').value,s:$('#ms').value.trim(),img:pend});if(!save()){D.mem.pop();return}
+    pend='';$('#mt').value='';$('#ms').value='';$('#mf').value='';$('#pv').style.display='none';A.mem.list();toast('Kenangan tersimpan')}}},
+ pl:{t:'Playlist Kita',h:()=>`<div class="cols"><div class="fm"><label for="pt">Judul lagu</label><input id="pt" maxlength="60"><label for="pa">Penyanyi</label><input id="pa" maxlength="60"><label for="pn">Kenapa lagu ini spesial?</label><input id="pn" maxlength="120"><label for="pk">Link Spotify/YouTube (opsional)</label><input id="pk" inputmode="url" placeholder="https://..."><button class="pri" id="padd">Tambah lagu</button></div><div class="ls" id="pll"></div></div>`,
+  list(){$('#pll').innerHTML=D.pl.length?D.pl.map(p=>`<div class="it"><div class="disc"></div><div style="flex:1;min-width:0"><h3>${esc(p.t)}</h3><p>${esc(p.a)}${p.n?' &middot; '+esc(p.n):''}</p>${p.l?`<a href="${esc(p.l)}" target="_blank" rel="noopener noreferrer">Dengarkan</a> &nbsp;`:''}<button class="x" data-k="pl" data-i="${p.id}">Hapus</button></div></div>`).join(''):'<p class="empty">Playlist masih kosong. Tambah lagu pertama kalian &#127926;</p>'},
+  init(){$('#padd').onclick=()=>{const t=$('#pt').value.trim();if(!t){toast('Isi judul lagunya dulu ya');return}let l=$('#pk').value.trim();if(l&&!/^https?:\/\//i.test(l))l='https://'+l;
+   D.pl.push({id:uid(),t,a:$('#pa').value.trim(),n:$('#pn').value.trim(),l});save();['#pt','#pa','#pn','#pk'].forEach(s=>$(s).value='');A.pl.list();toast('Lagu ditambahkan')}}},
+ sr:{t:'Surat',h:()=>`<textarea class="paper" id="lt" aria-label="Isi surat" placeholder="Untuk kamu, yang selalu ada..."></textarea><p class="mut" id="lsv" style="text-align:right;margin:4px 6px 0"></p>`,
+  init(){const t=$('#lt');t.value=D.letter;let h=null;t.oninput=()=>{D.letter=t.value;$('#lsv').textContent='Menyimpan...';clearTimeout(h);h=setTimeout(()=>{if(save())$('#lsv').textContent='Tersimpan'},500)}}},
+ wl:{t:'Wishlist Berdua',h:()=>`<div class="cols"><div class="fm"><label for="wi">Mau ngapain bareng?</label><input id="wi" maxlength="80" placeholder="Contoh: Piknik sore di taman"><button class="pri" id="wadd">Tambah</button><div class="bar"><i id="wb"></i></div><p class="mut" id="wc"></p></div><div class="ls" id="wll"></div></div>`,
+  list(){const dn=D.wl.filter(w=>w.ok).length;$('#wll').innerHTML=D.wl.length?D.wl.map(w=>`<div class="wl${w.ok?' d':''}"><input type="checkbox" data-w="${w.id}" ${w.ok?'checked':''} aria-label="Selesai"><span>${esc(w.t)}</span><button class="x" data-k="wl" data-i="${w.id}" aria-label="Hapus">&#10005;</button></div>`).join(''):'<p class="empty">Belum ada rencana. Yuk mulai bikin &#10024;</p>';
+   $('#wb').style.width=(D.wl.length?dn/D.wl.length*100:0)+'%';$('#wc').textContent=D.wl.length?dn+' dari '+D.wl.length+' sudah terwujud':''},
+  init(){const add=()=>{const t=$('#wi').value.trim();if(!t)return;D.wl.push({id:uid(),t,ok:false});save();$('#wi').value='';A.wl.list()};$('#wadd').onclick=add;$('#wi').onkeydown=e=>{if(e.key==='Enter')add()}}},
+ qt:{t:'Kata Hati',h:()=>`<div class="cols"><div class="qq" style="flex:1"><p id="qtx"></p><button class="pri" id="qn">Kata lain &#10024;</button></div><div class="fm" style="width:380px"><label for="qi">Tambah kata hatimu sendiri</label><textarea id="qi" maxlength="160" placeholder="Tulis kata-kata manismu..."></textarea><button class="pri" id="qa">Tambah</button><label style="display:flex;gap:10px;align-items:center;margin-top:16px"><input id="qc" type="checkbox" style="width:22px;height:22px;padding:0;accent-color:#E8476F"> Hanya pakai kata-kataku</label><div id="ql"></div></div></div>`,
+  list(){$('#ql').innerHTML=D.qt.map(q=>`<div class="wl"><span>${esc(q.t)}</span><button class="x" data-k="qt" data-i="${q.id}">Hapus</button></div>`).join('')||'<p class="mut">Belum ada kata-kata buatanmu.</p>'},
+  init(){let c='';const sh=()=>{const P=pool();let t=P[Math.floor(Math.random()*P.length)];if(P.length>1)while(t===c)t=P[Math.floor(Math.random()*P.length)];c=t;$('#qtx').textContent='"'+t+'"'};sh();$('#qn').onclick=()=>{sh();SN.tap()};
+   $('#qc').checked=D.qo;$('#qc').onchange=e=>{D.qo=e.target.checked;save();sh()};
+   $('#qa').onclick=()=>{const t=$('#qi').value.trim();if(!t){toast('Tulis dulu kata-katanya');return}D.qt.push({id:uid(),t});save();$('#qi').value='';A.qt.list();toast('Kata hati ditambahkan')}}},
+ cal:{t:'Kalender',h(){if(!D.date)return '<p class="empty">Isi tanggal jadian dulu di Pengaturan supaya kalender kalian muncul.</p>';
+   const n=new Date();n.setHours(0,0,0,0);const s=new Date(D.date+'T00:00:00'),dd=x=>{const k=Math.round((x-n)/864e5);return k===0?'Hari ini!':k>0?k+' hari lagi':'Sudah lewat'};
+   let c=dm(n.getFullYear(),n.getMonth(),s.getDate());if(c<n)c=dm(n.getFullYear(),n.getMonth()+1,s.getDate());
+   let a=dm(n.getFullYear(),s.getMonth(),s.getDate());if(a<n)a=dm(n.getFullYear()+1,s.getMonth(),s.getDate());
+   const box=(b,t,d)=>`<div class="cd"><small>${t}</small><b>${b}</b><small>${fmt(d.toLocaleDateString('sv-SE'))}</small></div>`;
+   const ms=[100,200,365,500,730,1000].map(k=>{const d=new Date(s);d.setDate(d.getDate()+k);return box(dd(d),'Hari ke-'+k.toLocaleString('id-ID'),d)}).join('');
+   return `<div class="cg">${box(dd(c),'Bulanan berikutnya',c)}${box(dd(a),'Anniversary berikutnya',a)}${ms}</div>`}},
+ set:{t:'Pengaturan',h:()=>`<div class="cols"><div class="fm" style="width:420px"><label for="sd">Tanggal jadian Nopal &amp; Zahra</label><input id="sd" type="date"><label>Aku adalah</label><div><button class="sw" id="m0">Nopal</button> <button class="sw" id="m1">Zahra</button></div><label style="margin-top:16px;display:flex;gap:10px;align-items:center"><input id="sn" type="checkbox" style="width:24px;height:24px;padding:0;accent-color:#E8476F"> Suara efek</label><p class="mut">Isi tersimpan di HP ini. Chat dan notifikasi sayang hanya tersinkron kalau halaman ini dibagikan ke pasanganmu dan kalian sama-sama masuk ke claude.ai.</p><button class="pri" id="rs" style="background:#8A6B78">Hapus semua data</button></div><div class="ls"><label>Wallpaper bawaan</label><div class="swg" id="wp"></div><label>Warna sendiri (dua warna gradasi)</label><div style="display:flex;gap:12px"><input type="color" id="c1" aria-label="Warna 1" style="width:70px;height:48px;padding:2px"><input type="color" id="c2" aria-label="Warna 2" style="width:70px;height:48px;padding:2px"></div><label for="wf">Foto dari galeri</label><input id="wf" type="file" accept="image/*"><button class="pri" id="wr" style="background:#8A6B78">Kembalikan wallpaper bawaan</button></div></div>`,
+  init(){$('#sd').value=D.date;$('#sd').oninput=e=>{D.date=e.target.value;save()};$('#sn').checked=D.snd;$('#sn').onchange=e=>{D.snd=e.target.checked;save()};
+   const me=()=>{$('#m0').classList.toggle('on',D.me===0);$('#m1').classList.toggle('on',D.me===1)};me();$('#m0').onclick=()=>{D.me=0;save();me();badge()};$('#m1').onclick=()=>{D.me=1;save();me();badge()};
+   $('#wp').innerHTML=WP.map((g,i)=>`<button class="sq2" data-w2="${i}" style="background:${g}" aria-label="Wallpaper ${i+1}"></button>`).join('');
+   $('#wp').onclick=e=>{const b=e.target.closest('[data-w2]');if(b){D.wall=+b.dataset.w2;D.wc=null;D.wimg='';save();wall();SN.tap()}};
+   $('#c1').value=(D.wc||['#f0507c','#7d5cf0'])[0];$('#c2').value=(D.wc||['#f0507c','#7d5cf0'])[1];
+   const col=()=>{D.wc=[$('#c1').value,$('#c2').value];D.wimg='';save();wall()};$('#c1').oninput=col;$('#c2').oninput=col;
+   $('#wf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=1280;c.height=720;const x=c.getContext('2d'),k=Math.max(1280/im.width,720/im.height),w=im.width*k,h=im.height*k;x.drawImage(im,(1280-w)/2,(720-h)/2,w,h);const old=D.wimg;D.wimg=c.toDataURL('image/jpeg',.72);if(!save()){D.wimg=old;return}wall();toast('Wallpaper diganti')};im.src=r.result};r.readAsDataURL(f)};
+   $('#wr').onclick=()=>{D.wc=null;D.wimg='';D.wall=0;save();wall();toast('Wallpaper bawaan')};
+   let a=false;$('#rs').onclick=()=>{if(!a){a=true;$('#rs').textContent='Tekan sekali lagi untuk menghapus';$('#rs').style.background='#c2274f';return}D=DEF();CH=[];save();wall();closeApp();toast('Data lokal dihapus')}}},
+ chat:{t:'Pesan',h:()=>`<div class="ch"><div class="cbar"><span class="cst" id="cst"></span><span style="flex:1"></span><span class="mut">Aku:</span><button class="sw" id="s0">Nopal</button><button class="sw" id="s1">Zahra</button></div><div class="cm" id="cm"></div><div class="cb"><input id="ci" maxlength="200" placeholder="Tulis pesan..." aria-label="Pesan"><button class="pri" id="cs" style="margin:0">Kirim</button></div></div>`,
+  list(){const m=$('#cm');if(!m)return;const f=t=>typeof t==='number'?new Date(t).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):esc(t||'');
+   $('#s0').classList.toggle('on',D.me===0);$('#s1').classList.toggle('on',D.me===1);
+   $('#cst').textContent=D.me==null?'Pilih dulu: kamu Nopal atau Zahra?':DB?'Tersinkron dengan pasanganmu':'Mode lokal: pesan hanya di perangkat ini';
+   m.innerHTML=CH.length?CH.map(c=>`<div class="mg${c.w===D.me?' r':''}"><div class="bb"><b style="font-size:12px;opacity:.8">${c.w?'Zahra':'Nopal'}</b><br>${esc(c.t)}<small>${f(c.ts)}<button class="x" data-k="chat" data-i="${c.id}" aria-label="Hapus pesan">hapus</button></small></div></div>`).join(''):'<p class="empty">Belum ada pesan. Tulis yang pertama &#128172;</p>';
+   m.scrollTop=m.scrollHeight;D.seen=Date.now();save();badge()},
+  init(){$('#s0').onclick=()=>{D.me=0;save();A.chat.list()};$('#s1').onclick=()=>{D.me=1;save();A.chat.list()};
+   const send=()=>{const t=$('#ci').value.trim();if(!t)return;if(D.me==null){toast('Pilih dulu: kamu Nopal atau Zahra');return}chSend(t);$('#ci').value='';SN.tap()};$('#cs').onclick=send;$('#ci').onkeydown=e=>{if(e.key==='Enter')send()}}},
+ tny:{t:'Tanya Jawab',h:()=>`<div class="qq"><p id="tx" style="font-size:32px"></p><button class="pri" id="tn">Pertanyaan lain &#10024;</button><span class="mut" id="tc"></span></div>`,
+  init(){let bag=[];const nx=()=>{if(!bag.length)bag=[...TQ].sort(()=>Math.random()-.5);$('#tx').textContent=bag.pop();$('#tc').textContent=bag.length+' pertanyaan tersisa di putaran ini';SN.tap()};nx();$('#tn').onclick=nx}},
+ kcn:{t:'Date Roulette',h:()=>`<div class="qq"><p id="kx" style="font-size:38px">Mau kencan ke mana hari ini?</p><button class="pri" id="ks">&#127905; Putar!</button><button class="pri" id="kw" style="background:#8A6B78;display:none">Masukkan ke Wishlist</button></div>`,
+  init(){let c='';const btn=$('#ks');btn.onclick=()=>{btn.disabled=true;$('#kw').style.display='none';$('#kx').style.color='';let n=0;const iv=setInterval(()=>{c=DT[Math.floor(Math.random()*DT.length)];$('#kx').textContent=c;SN.tap();if(++n>14){clearInterval(iv);btn.disabled=false;SN.chime();$('#kw').style.display='inline-block';$('#kx').style.color='#E8476F'}},110)};
+   $('#kw').onclick=()=>{D.wl.push({id:uid(),t:c,ok:false});save();toast('Masuk Wishlist')}}},
+ jar:{t:'Toples Sayang',h:()=>`<div class="cols"><div class="fm"><label for="jt">Tulis satu catatan manis</label><textarea id="jt" maxlength="200" placeholder="Alasan aku sayang kamu..."></textarea><button class="pri" id="jadd">Masukkan ke toples</button></div><div class="ls"><div style="font-size:84px;text-align:center;line-height:1.1">&#127855;</div><p id="jc" class="mut" style="text-align:center;margin:0"></p><div style="text-align:center"><button class="pri" id="jpick">Ambil satu &#10024;</button></div><div class="jres" id="jres"></div><label>Isi toples</label><div id="jl"></div></div></div>`,
+  list(){$('#jc').textContent=D.jar.length+' catatan di toples';$('#jl').innerHTML=D.jar.map(j=>`<div class="wl"><span>${esc(j.t)}</span><button class="x" data-k="jar" data-i="${j.id}">Hapus</button></div>`).join('')},
+  init(){$('#jadd').onclick=()=>{const t=$('#jt').value.trim();if(!t){toast('Tulis catatannya dulu ya');return}D.jar.push({id:uid(),t});save();$('#jt').value='';A.jar.list();SN.tap();toast('Masuk toples')};
+   $('#jpick').onclick=()=>{if(!D.jar.length){toast('Toplesnya masih kosong');return}const el=$('#jres');el.textContent=D.jar[Math.floor(Math.random()*D.jar.length)].t;el.style.animation='none';void el.offsetWidth;el.style.animation='';SN.chime()}}},
+ cor:{t:'Coretan',h:()=>`<div style="display:flex;gap:22px"><div style="flex:1"><canvas id="cv" width="820" height="440" style="width:100%;aspect-ratio:820/440;background:#fff;border:2px solid #f1d5dc;border-radius:18px;touch-action:none;display:block"></canvas></div><div class="fm" style="width:190px"><label>Warna</label><div id="sw" class="swg"></div><label for="bs">Ukuran kuas</label><input id="bs" type="range" min="2" max="30" value="8" style="padding:0"><button class="pri" id="er" style="background:#8A6B78;width:100%">Penghapus</button><button class="pri" id="cl" style="background:#8A6B78;width:100%">Bersihkan</button><button class="pri" id="sv" style="width:100%">Simpan ke Memory</button></div></div>`,
+  init(){const c=$('#cv'),x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,820,440);x.lineCap='round';x.lineJoin='round';let col='#E8476F',dr=false,lx=0,ly=0;
+   const cs=['#E8476F','#ff8a3d','#f2c230','#3fbf7f','#3f8cff','#8a5cf0','#3B2030'];
+   $('#sw').innerHTML=cs.map(k=>`<button class="sq2" data-c="${k}" style="background:${k}" aria-label="Warna ${k}"></button>`).join('');
+   $('#sw').onclick=e=>{const b=e.target.closest('[data-c]');if(b)col=b.dataset.c};
+   const pt=e=>[e.offsetX*c.width/c.clientWidth,e.offsetY*c.height/c.clientHeight];
+   c.onpointerdown=e=>{dr=true;[lx,ly]=pt(e);c.setPointerCapture(e.pointerId);x.fillStyle=col;x.beginPath();x.arc(lx,ly,+$('#bs').value/2,0,7);x.fill()};
+   c.onpointermove=e=>{if(!dr)return;const [px,py]=pt(e);x.strokeStyle=col;x.lineWidth=+$('#bs').value;x.beginPath();x.moveTo(lx,ly);x.lineTo(px,py);x.stroke();lx=px;ly=py};
+   c.onpointerup=c.onpointercancel=()=>{dr=false};
+   $('#er').onclick=()=>{col='#ffffff'};$('#cl').onclick=()=>{x.fillStyle='#fff';x.fillRect(0,0,820,440)};
+   $('#sv').onclick=()=>{D.mem.push({id:uid(),t:'Coretan kita',d:new Date().toLocaleDateString('sv-SE'),s:'',img:c.toDataURL('image/jpeg',.75)});if(save())toast('Disimpan ke Memory');else D.mem.pop()}}},
+ ev:{t:'Acara & Countdown',h:()=>`<div class="cols"><div class="fm"><label for="et">Acara</label><input id="et" maxlength="50" placeholder="Contoh: Ketemu lagi"><label for="ed">Tanggal</label><input id="ed" type="date"><button class="pri" id="eadd">Tambah acara</button></div><div class="ls" id="el"></div></div>`,
+  list(){const n=new Date();n.setHours(0,0,0,0);const L=[...D.ev].sort((a,b)=>a.d.localeCompare(b.d));$('#el').innerHTML=L.length?L.map(e=>{const k=Math.round((new Date(e.d+'T00:00:00')-n)/864e5);return `<div class="it"><div class="cd" style="min-width:150px"><b>${Math.abs(k)}</b><small>${k===0?'Hari ini!':k>0?'hari lagi':'hari lalu'}</small></div><div style="flex:1"><h3>${esc(e.t)}</h3><span class="mut">${fmt(e.d)}</span><br><button class="x" data-k="ev" data-i="${e.id}">Hapus</button></div></div>`}).join(''):'<p class="empty">Belum ada acara. Tambah tanggal ketemu, ulang tahun, atau liburan &#127881;</p>'},
+  init(){$('#eadd').onclick=()=>{const t=$('#et').value.trim(),d=$('#ed').value;if(!t||!d){toast('Isi acara dan tanggalnya ya');return}D.ev.push({id:uid(),t,d});save();$('#et').value='';A.ev.list();SN.tap()}}}
+};
+function openApp(k){cur=k;SN.tap();const a=A[k];$('#at').textContent=a.t;$('#ab').innerHTML=a.h();a.init&&a.init();a.list&&a.list();$('#ab').scrollTop=0;$('#app').classList.add('on');const w=document.querySelector('.win');w.style.animation='none';void w.offsetWidth;w.style.animation=''}
+function closeApp(){$('#app').classList.remove('on');cur=null;widgets();badge()}
+$('#bk').onclick=closeApp;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cur)closeApp();if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.app&&e.target.tagName!=='BUTTON'){e.preventDefault();openApp(e.target.dataset.app)}});
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-k]');if(b){const k=b.dataset.k;if(k==='chat'){chDel(b.dataset.i);return}D[k]=D[k].filter(x=>x.id!==b.dataset.i);save();A[k].list();return}
+ const o=e.target.closest('[data-app]');if(o&&!cur)openApp(o.dataset.app)});
+document.addEventListener('change',e=>{const w=e.target.dataset&&e.target.dataset.w;if(!w)return;const it=D.wl.find(x=>x.id===w);if(it){it.ok=e.target.checked;save();A.wl.list()}});
+/* ---- tambahan: wallpaper, suara, halaman, kunci layar, notifikasi ---- */
+const WP=['linear-gradient(155deg,#f0507c,#ff8a6b 48%,#7d5cf0)','linear-gradient(155deg,#5b5bd6,#c26bd6 55%,#ff8fa3)','linear-gradient(155deg,#0b7f86,#3cb7b0 55%,#8fd9a8)','linear-gradient(155deg,#2b1055,#5a5fc4 60%,#7597de)','linear-gradient(155deg,#ff6a3d,#ff9d4d 55%,#ff5e8a)'];
+function wall(){let v;if(D.wimg)v=`linear-gradient(rgba(50,8,40,.28),rgba(50,8,40,.28)),url("${D.wimg}") center/cover no-repeat`;else if(D.wc)v=`linear-gradient(155deg,${D.wc[0]},${D.wc[1]})`;else v=WP[D.wall%WP.length];st.style.setProperty('--wp',v);st.classList.toggle('pic',!!D.wimg)}
+const TQ=['Momen apa yang pertama kali bikin kamu sadar suka sama aku?','Hal kecil apa dari aku yang paling bikin kamu senyum?','Kalau bisa liburan ke mana saja berdua, kamu pilih ke mana?','Apa mimpi terbesarmu lima tahun lagi, dan aku bisa bantu apa?','Lagu apa yang paling ngingetin kamu sama kita?','Makanan apa yang harus kita coba bareng?','Kapan kamu merasa paling disayang?','Apa kenangan favoritmu sama aku sejauh ini?','Kalau sehari tanpa gadget, kita ngapain?','Apa yang kamu pelajari dari hubungan kita?','Hal apa yang bikin kamu tenang waktu lagi capek?','Apa yang belum pernah kamu ceritain ke aku?','Kalau bikin film tentang kita, judulnya apa?','Janji kecil apa yang mau kamu buat buat kita?','Di mana tempat favoritmu buat ngobrol berdua?','Apa hal yang paling kamu syukuri hari ini?','Rumah impian kita kira-kira kayak apa?'];
+const DT=['Piknik sore di taman','Nonton film di rumah sambil ngemil','Masak bareng menu baru','Keliling naik motor tanpa tujuan','Wisata kuliner pinggir jalan','Foto bareng di photobooth','Main board game berdua','Nonton sunset dari tempat tinggi','Ke toko buku dan saling pilihin buku','Cobain kafe baru','Bersepeda pagi bareng','Nyari bazar atau konser lokal','Bikin surat untuk kita setahun lagi','Belajar hal baru bareng','Jalan malam sambil ngobrolin mimpi'];
+let AC=null;function tn(f,t,d,v){if(!D.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const T=AC.currentTime+t,o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,T);g.gain.linearRampToValueAtTime(v,T+.01);g.gain.exponentialRampToValueAtTime(.0001,T+d);o.connect(g).connect(AC.destination);o.start(T);o.stop(T+d+.05)}catch(e){}}
+const SN={tap:()=>tn(660,0,.12,.1),chime:()=>{tn(1568,0,.8,.08);tn(2093,.12,.9,.07)},love:()=>[523,659,784,1047].forEach((f,i)=>tn(f,i*.09,.7,.09))};
+function extra(){const t=new Date();t.setHours(0,0,0,0);
+ const up=D.ev.map(e=>({t:e.t,k:Math.round((new Date(e.d+'T00:00:00')-t)/864e5)})).filter(e=>e.k>=0).sort((a,b)=>a.k-b.k)[0];
+ $('#nxe').textContent=up?up.t+': '+(up.k===0?'hari ini!':up.k+' hari lagi'):'';
+ $('#lck').textContent=$('#ck').textContent;$('#ldt').textContent=$('#dt').textContent;
+ $('#ldn').textContent=$('#dn').textContent!=='?'?$('#dn').textContent+' hari bersama':''}
+const IC=[['chat','&#128241;','Pesan','#5ad1ff,#2b8ef0'],['tny','&#127183;','Tanya Jawab','#ff9ec4,#e8477f'],['kcn','&#127905;','Date Roulette','#ffb86b,#ff6a3d'],['jar','&#127855;','Toples Sayang','#ffd76a,#e8a020'],['cor','&#127912;','Coretan','#7be0a0,#2fae74'],['ev','&#9203;','Acara','#c3a1ff,#7b4de8']];
+$('#p2').innerHTML=`<div class="w pnl"><div class="g3">${IC.map(a=>`<button class="ic" data-app="${a[0]}"><span class="sq" style="background:linear-gradient(145deg,${a[3]})">${a[1]}${a[0]==='chat'?'<i class="bdg" id="bdg"></i>':''}</span><span>${a[2]}</span></button>`).join('')}</div></div>`;
+function setPage(n){st.classList.toggle('pg2',n===1);$('#d0').classList.toggle('on',n===0);$('#d1').classList.toggle('on',n===1)}
+$('#d0').onclick=()=>setPage(0);$('#d1').onclick=()=>setPage(1);
+let sx=null;st.addEventListener('pointerdown',e=>{sx=(cur||e.target.closest('input,textarea,canvas,#lock'))?null:e.clientX});
+st.addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx;sx=null;if(dx<-70)setPage(1);else if(dx>70)setPage(0)});
+function notify(t,b){const n=$('#nt');if(t==null){t='&#128140; Kata Hati';const P=pool();b=P[Math.floor(Math.random()*P.length)]}n.innerHTML='<b>'+t+'</b>'+esc(b);n.classList.add('on');SN.chime();clearTimeout(notify.h);notify.h=setTimeout(()=>n.classList.remove('on'),5200)}
+const unlock=()=>{const l=$('#lock');if(l.classList.contains('up'))return;SN.tap();l.classList.add('up');setTimeout(()=>{l.style.display='none';notify()},650)};
+$('#lock').onclick=unlock;$('#lock').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();unlock()}};
+const pool=()=>D.qo&&D.qt.length?D.qt.map(q=>q.t):QT.concat(D.qt.map(q=>q.t));
+let DB=null,RM=null,CH=D.chat.slice();
+function burst(){for(let i=0;i<20;i++){const h=document.createElement('span');h.className='bh';h.textContent=['\u2665','\uD83D\uDC97','\uD83D\uDC96','\uD83D\uDC95'][i%4];h.style.cssText=`left:${430+Math.random()*420}px;font-size:${24+Math.random()*34}px;--dx:${(Math.random()-.5)*320}px;animation-delay:${(Math.random()*.4).toFixed(2)}s`;st.appendChild(h);setTimeout(()=>h.remove(),2700)}}
+function badge(){const b=$('#bdg');if(!b)return;const n=CH.filter(c=>c.w!==D.me&&typeof c.ts==='number'&&c.ts>D.seen).length;b.textContent=n>9?'9+':n;b.style.display=n&&D.me!=null?'flex':'none'}
+function incoming(m){if(cur==='chat')return;notify('&#128172; '+(m.w?'Zahra':'Nopal'),m.t);badge()}
+async function chSend(t){const m={w:D.me===1?1:0,t,ts:Date.now()};
+ if(DB){try{await DB.collection('chat').add(m);return}catch(e){toast('Gagal kirim ke pasangan, disimpan lokal')}}
+ m.id=uid();D.chat.push(m);save();if(!DB)CH=D.chat.slice();A.chat.list()}
+async function chDel(id){if(DB){try{await DB.doc('chat/'+id).delete()}catch(e){toast('Gagal menghapus')}return}
+ D.chat=D.chat.filter(x=>x.id!==id);save();CH=D.chat.slice();A.chat.list()}
+function lovein(d){if(!d||d.f===D.me||(d.ts&&d.ts<=D.loveSeen))return;D.loveSeen=d.ts||Date.now();save();SN.love();burst();notify('&#128151; '+(d.f===1?'Zahra':'Nopal')+' mengirim sayang!',d.q||'Sayang kamu.')}
+function loveSend(){if(D.me==null){notify('Siapa kamu?','Pilih dulu kamu Nopal atau Zahra di Pengaturan atau Pesan, supaya sayangnya sampai ke orang yang tepat.');return}
+ const ts=Date.now(),f=D.me===1?1:0,P=pool(),q=P[Math.floor(Math.random()*P.length)],to=D.me===1?'Nopal':'Zahra';D.loveSeen=ts;save();SN.love();burst();
+ if(RM)RM.emit('love',{f,ts,q}).catch(()=>{});if(DB)DB.doc('love/last').set({f,ts,q}).catch(()=>{});
+ notify('&#128151; Sayang terkirim',(RM||DB)?'Notifikasi dikirim ke '+to+'. Dia akan melihatnya begitu halaman ini terbuka di HP-nya.':'Mode lokal: '+to+' belum bisa menerimanya karena halaman ini belum terhubung.')}
+$('#lv').onclick=loveSend;
+async function net(){let first=true;
+ try{if(!window.claude||!claude.use)return;DB=await claude.use('db');RM=await claude.use('room')}catch(e){}
+ if(DB){try{DB.collection('chat').limit(300).onSnapshot(sn=>{CH=sn.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(a.ts||0)-(b.ts||0));
+   if(!first)sn.docChanges().forEach(c=>{if(c.type==='added'&&!c.doc.metadata.hasPendingWrites){const m=c.doc.data();if(m.w!==D.me)incoming(m)}});first=false;badge();if(cur==='chat')A.chat.list()},()=>{DB=null;CH=D.chat.slice();if(cur==='chat')A.chat.list()});
+   DB.doc('love/last').onSnapshot(sn=>{if(sn.exists)lovein(sn.data())},()=>{})}catch(e){DB=null}}
+ if(RM){try{RM.on('love',m=>{if(!m.isMe)lovein(m.data)},()=>{})}catch(e){}}
+ if(cur==='chat')A.chat.list()}
+net();
+wall();widgets();
+</script></body></html>
