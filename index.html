@@ -148,8 +148,8 @@ label{display:block;font-size:14px;color:#8A6B78;margin:10px 0 4px;font-weight:7
 <div id="bgm"></div><div id="lb"></div><div id="ts" role="status"></div><div id="nt" role="status"></div><div id="lock" role="button" tabindex="0" aria-label="Buka kunci layar"><div id="lck"></div><div id="ldt"></div><div class="lkn">Nopal <i>&hearts;</i> Zahra</div><div id="ldn"></div><p>Ketuk untuk membuka</p></div>
 </div></div>
 <script>
-/* === ISI KONFIGURASI FIREBASE KAMU DI SINI (Project settings > Your apps > Web app) === */
-const FB={apiKey:'ISI_API_KEY',authDomain:'ISI_PROJECT.firebaseapp.com',projectId:'ISI_PROJECT_ID',appId:'ISI_APP_ID'};
+/* === ISI KONFIGURASI SUPABASE (Project Settings > API: Project URL & anon/publishable key) === */
+const SB={url:'ISI_PROJECT_URL',key:'ISI_ANON_KEY'};
 const $=s=>document.querySelector(s),K='naufal-zahra-v1',st=$('#stage');
 const DEF=()=>({date:'',mem:[],pl:[],wl:[],letter:'',chat:[],jar:[],ev:[],wall:0,snd:true,me:null,seen:0,loveSeen:0,qt:[],qo:false,wc:null,wimg:'',gal:[],bgm:''});let D=DEF(),cur=null;
 try{const r=localStorage.getItem(K);if(r)D=Object.assign(D,JSON.parse(r))}catch(e){}
@@ -159,9 +159,9 @@ function toast(t){const e=$('#ts');e.textContent=t;e.classList.add('on');clearTi
 let FS=null,LAST={},PHs='',PHi=0,PHn=0,PHd=null,PHm=false,LBi=0,LBp=[];const SH=['mem','pl','wl','jar','qt','ev','gal'];
 const cfgS=()=>JSON.stringify({date:D.date,letter:D.letter});
 function sync(){if(!FS)return;SH.forEach(k=>{const old=LAST[k]||{},now={};D[k].forEach(x=>now[x.id]=JSON.stringify(x));
-  for(const id in now)if(old[id]!==now[id])FS.collection(k).doc(id).set(JSON.parse(now[id])).catch(()=>toast('Gagal sinkron, cek koneksi'));
-  for(const id in old)if(!(id in now))FS.collection(k).doc(id).delete().catch(()=>{});LAST[k]=now});
- const c=cfgS();if(c!==LAST.cfg){LAST.cfg=c;FS.doc('cfg/main').set({date:D.date,letter:D.letter}).catch(()=>{})}}
+  for(const id in now)if(old[id]!==now[id])put(k,id,JSON.parse(now[id])).then(r=>{if(r.error)toast('Gagal sinkron, cek koneksi')});
+  for(const id in old)if(!(id in now))del(k,id);LAST[k]=now});
+ const c=cfgS();if(c!==LAST.cfg){LAST.cfg=c;put('cfg','main',{date:D.date,letter:D.letter})}}
 function save(){sync();try{const o=Object.assign({},D);if(FS)SH.forEach(k=>o[k]=[]);localStorage.setItem(K,JSON.stringify(o));return true}catch(e){toast('Penyimpanan penuh atau tidak tersedia');return false}}
 const photos=()=>D.gal.map(g=>({id:g.id,img:g.img,t:g.t||'',d:g.d||'',g:1})).concat(D.mem.filter(m=>m.img).map(m=>({id:m.id,img:m.img,t:m.t,d:m.d}))).sort((a,b)=>(b.d||'').localeCompare(a.d||''));
 const fmt=d=>d?new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}):'';
@@ -214,7 +214,7 @@ const A={
    const box=(b,t,d)=>`<div class="cd"><small>${t}</small><b>${b}</b><small>${fmt(d.toLocaleDateString('sv-SE'))}</small></div>`;
    const ms=[100,200,365,500,730,1000].map(k=>{const d=new Date(s);d.setDate(d.getDate()+k);return box(dd(d),'Hari ke-'+k.toLocaleString('id-ID'),d)}).join('');
    return `<div class="cg">${box(dd(c),'Bulanan berikutnya',c)}${box(dd(a),'Anniversary berikutnya',a)}${ms}</div>`}},
- set:{t:'Pengaturan',h:()=>`<div class="cols"><div class="fm" style="width:420px"><label for="sd">Tanggal jadian Nopal &amp; Zahra</label><input id="sd" type="date"><label>Aku adalah</label><div><button class="sw" id="m0">Nopal</button> <button class="sw" id="m1">Zahra</button></div><label style="margin-top:16px;display:flex;gap:10px;align-items:center"><input id="sn" type="checkbox" style="width:24px;height:24px;padding:0;accent-color:#E8476F"> Suara efek</label><p class="mut">Mode Live (Firebase): foto, memory, chat, playlist, dll tersinkron ke semua perangkat. Wallpaper &amp; backsound tersimpan per perangkat. Kalau status bar menunjukkan "Lokal", isi dulu konfigurasi Firebase di kode.</p><button class="pri" id="rs" style="background:#8A6B78">Hapus semua data (juga di server)</button></div><div class="ls"><label>Wallpaper bawaan</label><div class="swg" id="wp"></div><label>Warna sendiri (dua warna gradasi)</label><div style="display:flex;gap:12px"><input type="color" id="c1" aria-label="Warna 1" style="width:70px;height:48px;padding:2px"><input type="color" id="c2" aria-label="Warna 2" style="width:70px;height:48px;padding:2px"></div><label for="wf">Foto dari galeri</label><input id="wf" type="file" accept="image/*"><button class="pri" id="wr" style="background:#8A6B78">Kembalikan wallpaper bawaan</button></div></div>`,
+ set:{t:'Pengaturan',h:()=>`<div class="cols"><div class="fm" style="width:420px"><label for="sd">Tanggal jadian Nopal &amp; Zahra</label><input id="sd" type="date"><label>Aku adalah</label><div><button class="sw" id="m0">Nopal</button> <button class="sw" id="m1">Zahra</button></div><label style="margin-top:16px;display:flex;gap:10px;align-items:center"><input id="sn" type="checkbox" style="width:24px;height:24px;padding:0;accent-color:#E8476F"> Suara efek</label><p class="mut">Mode Live (Supabase): foto, memory, chat, playlist, dll tersinkron ke semua perangkat. Wallpaper &amp; backsound tersimpan per perangkat. Kalau status bar menunjukkan "Lokal", isi dulu konfigurasi Supabase di kode.</p><button class="pri" id="rs" style="background:#8A6B78">Hapus semua data (juga di server)</button></div><div class="ls"><label>Wallpaper bawaan</label><div class="swg" id="wp"></div><label>Warna sendiri (dua warna gradasi)</label><div style="display:flex;gap:12px"><input type="color" id="c1" aria-label="Warna 1" style="width:70px;height:48px;padding:2px"><input type="color" id="c2" aria-label="Warna 2" style="width:70px;height:48px;padding:2px"></div><label for="wf">Foto dari galeri</label><input id="wf" type="file" accept="image/*"><button class="pri" id="wr" style="background:#8A6B78">Kembalikan wallpaper bawaan</button></div></div>`,
   init(){$('#sd').value=D.date;$('#sd').oninput=e=>{D.date=e.target.value;save()};$('#sn').checked=D.snd;$('#sn').onchange=e=>{D.snd=e.target.checked;save()};
    const me=()=>{$('#m0').classList.toggle('on',D.me===0);$('#m1').classList.toggle('on',D.me===1)};me();$('#m0').onclick=()=>{D.me=0;save();me();badge()};$('#m1').onclick=()=>{D.me=1;save();me();badge()};
    $('#wp').innerHTML=WP.map((g,i)=>`<button class="sq2" data-w2="${i}" style="background:${g}" aria-label="Wallpaper ${i+1}"></button>`).join('');
@@ -300,33 +300,45 @@ let DB=null,RM=null,CH=D.chat.slice();
 function burst(){for(let i=0;i<20;i++){const h=document.createElement('span');h.className='bh';h.textContent=['\u2665','\uD83D\uDC97','\uD83D\uDC96','\uD83D\uDC95'][i%4];h.style.cssText=`left:${430+Math.random()*420}px;font-size:${24+Math.random()*34}px;--dx:${(Math.random()-.5)*320}px;animation-delay:${(Math.random()*.4).toFixed(2)}s`;st.appendChild(h);setTimeout(()=>h.remove(),2700)}}
 function badge(){const b=$('#bdg');if(!b)return;const n=CH.filter(c=>c.w!==D.me&&typeof c.ts==='number'&&c.ts>D.seen).length;b.textContent=n>9?'9+':n;b.style.display=n&&D.me!=null?'flex':'none'}
 function incoming(m){if(cur==='chat')return;notify('&#128172; '+(m.w?'Zahra':'Nopal'),m.t);badge()}
-async function chSend(t){const m={w:D.me===1?1:0,t,ts:Date.now()};
- if(DB){try{await DB.collection('chat').add(m);return}catch(e){toast('Gagal kirim ke pasangan, disimpan lokal')}}
- m.id=uid();D.chat.push(m);save();if(!DB)CH=D.chat.slice();A.chat.list()}
-async function chDel(id){if(DB){try{await DB.doc('chat/'+id).delete()}catch(e){toast('Gagal menghapus')}return}
+async function chSend(t){const m={w:D.me===1?1:0,t,ts:Date.now(),id:uid()};
+ if(DB){CH.push(m);A.chat.list();const r=await put('chat',m.id,m);if(r.error){CH=CH.filter(c=>c.id!==m.id);A.chat.list();toast('Gagal kirim, coba lagi')}return}
+ D.chat.push(m);save();CH=D.chat.slice();A.chat.list()}
+async function chDel(id){if(DB){const r=await del('chat',id);if(r.error)toast('Gagal menghapus');else{CH=CH.filter(c=>c.id!==id);A.chat.list()}return}
  D.chat=D.chat.filter(x=>x.id!==id);save();CH=D.chat.slice();A.chat.list()}
 function lovein(d){if(!d||d.f===D.me||(d.ts&&d.ts<=D.loveSeen))return;D.loveSeen=d.ts||Date.now();save();SN.love();burst();notify('&#128151; '+(d.f===1?'Zahra':'Nopal')+' mengirim sayang!',d.q||'Sayang kamu.')}
 function loveSend(){if(D.me==null){notify('Siapa kamu?','Pilih dulu kamu Nopal atau Zahra di Pengaturan atau Pesan, supaya sayangnya sampai ke orang yang tepat.');return}
  const ts=Date.now(),f=D.me===1?1:0,P=pool(),q=P[Math.floor(Math.random()*P.length)],to=D.me===1?'Nopal':'Zahra';D.loveSeen=ts;save();SN.love();burst();
- if(RM)RM.emit('love',{f,ts,q}).catch(()=>{});if(DB)DB.doc('love/last').set({f,ts,q}).catch(()=>{});
+ if(RM)RM.emit('love',{f,ts,q}).catch(()=>{});if(DB)put('love','last',{f,ts,q});
  notify('&#128151; Sayang terkirim',(RM||DB)?'Notifikasi dikirim ke '+to+'. Dia akan melihatnya begitu halaman ini terbuka di HP-nya.':'Mode lokal: '+to+' belum bisa menerimanya karena halaman ini belum terhubung.')}
 $('#lv').onclick=loveSend;
 const ld=u=>new Promise((o,r)=>{const e=document.createElement('script');e.src=u;e.onload=o;e.onerror=r;document.head.appendChild(e)});
 const live=on=>{$('#lvs').innerHTML=on?'&#128994; Live':'&#9898; Lokal'};
 function refresh(){widgets();if(cur&&cur!=='chat'&&A[cur].list)A[cur].list()}
-async function net(){let first=true;
- try{if(!FB.apiKey||/^ISI/.test(FB.apiKey))throw 0;const V='https://www.gstatic.com/firebasejs/10.12.2/';
-  await ld(V+'firebase-app-compat.js');await ld(V+'firebase-firestore-compat.js');firebase.initializeApp(FB);FS=DB=firebase.firestore()}
- catch(e){FS=DB=null;live(false);if(cur==='chat')A.chat.list();return}
- live(true);LAST.cfg=cfgS();sync();
- SH.forEach(k=>FS.collection(k).onSnapshot(sn=>{D[k]=sn.docs.map(d=>Object.assign({},d.data(),{id:d.id}));const m={};D[k].forEach(x=>m[x.id]=JSON.stringify(x));LAST[k]=m;refresh()},()=>live(false)));
- FS.doc('cfg/main').onSnapshot(sn=>{if(!sn.exists){LAST.cfg='';sync();return}const v=sn.data(),t=$('#lt');
-  D.date=v.date||'';if(!(cur==='sr'&&document.activeElement===t))D.letter=v.letter||'';LAST.cfg=JSON.stringify({date:v.date||'',letter:v.letter||''});
-  if(cur==='sr'&&t&&document.activeElement!==t)t.value=D.letter;if(cur==='set'&&document.activeElement!==$('#sd'))$('#sd').value=D.date;widgets()},()=>{});
- FS.collection('chat').limit(300).onSnapshot(sn=>{CH=sn.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(a.ts||0)-(b.ts||0));
-  if(!first)sn.docChanges().forEach(c=>{if(c.type==='added'&&!c.doc.metadata.hasPendingWrites){const m=c.doc.data();if(m.w!==D.me)incoming(m)}});first=false;badge();if(cur==='chat')A.chat.list()},()=>{});
- FS.doc('love/last').onSnapshot(sn=>{if(sn.exists)lovein(sn.data())},()=>{});
- if(cur==='chat')A.chat.list()}
+const put=(c,i,d)=>FS.from('kv').upsert({col:c,id:i,data:d});
+const del=(c,i)=>FS.from('kv').delete().match({col:c,id:i});
+function setCfg(v){const t=$('#lt');D.date=v.date||'';if(!(cur==='sr'&&document.activeElement===t))D.letter=v.letter||'';LAST.cfg=JSON.stringify({date:v.date||'',letter:v.letter||''});
+ if(cur==='sr'&&t&&document.activeElement!==t)t.value=D.letter;if(cur==='set'&&document.activeElement!==$('#sd'))$('#sd').value=D.date;widgets()}
+function applyAll(rows,first){const srv={};SH.forEach(k=>srv[k]=[]);const ch=[];let cfg=null,love=null;
+ rows.forEach(r=>{const o=Object.assign({},r.data,{id:r.id});if(srv[r.col])srv[r.col].push(o);else if(r.col==='chat')ch.push(o);else if(r.col==='cfg')cfg=r.data;else if(r.col==='love')love=r.data});
+ SH.forEach(k=>{const S=new Set(srv[k]);let L=srv[k];if(first){const ids=new Set(L.map(x=>x.id));L=L.concat(D[k].filter(x=>!ids.has(x.id)))}
+  D[k]=L;LAST[k]={};L.forEach(x=>{if(S.has(x))LAST[k][x.id]=JSON.stringify(x)})});
+ CH=ch.sort((a,b)=>(a.ts||0)-(b.ts||0));if(cfg)setCfg(cfg);else LAST.cfg='';
+ if(love)lovein(love);sync();badge();refresh();if(cur==='chat')A.chat.list()}
+function onRow(ev,row){if(!row)return;const col=row.col,id=row.id,del_=ev==='DELETE';
+ if(SH.includes(col)){LAST[col]=LAST[col]||{};if(del_){D[col]=D[col].filter(x=>x.id!==id);delete LAST[col][id]}
+  else{const o=Object.assign({},row.data,{id}),i=D[col].findIndex(x=>x.id===id);if(i<0)D[col].push(o);else D[col][i]=o;LAST[col][id]=JSON.stringify(o)}refresh()}
+ else if(col==='chat'){if(del_)CH=CH.filter(c=>c.id!==id);else{const m=Object.assign({},row.data,{id});
+   if(CH.some(c=>c.id===id))CH=CH.map(c=>c.id===id?m:c);else{CH.push(m);CH.sort((a,b)=>(a.ts||0)-(b.ts||0));if(m.w!==D.me)incoming(m)}}
+  badge();if(cur==='chat')A.chat.list()}
+ else if(col==='cfg'&&!del_)setCfg(row.data);else if(col==='love'&&!del_)lovein(row.data)}
+async function net(){const ok=SB.url&&!/^ISI/.test(SB.url)&&!/^ISI/.test(SB.key);
+ try{if(!ok)throw 0;await ld('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js');
+  const c=supabase.createClient(SB.url,SB.key),r=await c.from('kv').select('col,id,data');if(r.error)throw r.error;
+  FS=DB=c;applyAll(r.data,true);
+  c.channel('kv-live').on('postgres_changes',{event:'*',schema:'public',table:'kv'},p=>onRow(p.eventType,p.eventType==='DELETE'?p.old:p.new)).subscribe(x=>{if(x==='SUBSCRIBED')live(true);else if(x==='CHANNEL_ERROR'||x==='TIMED_OUT')live(false)});live(true)}
+ catch(e){FS=DB=null;live(false);if(ok)toast('Supabase belum tersambung, cek URL, key, dan tabel kv');if(cur==='chat')A.chat.list()}}
+let HID=0;document.addEventListener('visibilitychange',async()=>{if(document.hidden){HID=Date.now();return}
+ if(FS&&HID&&Date.now()-HID>20000){const r=await FS.from('kv').select('col,id,data');if(!r.error)applyAll(r.data,false)}});
 /* ---- carousel foto, lightbox, backsound ---- */
 function phr(){const P=photos().slice(0,12),sig=P.map(p=>p.id).join();if(sig===PHs)return;PHs=sig;PHn=P.length;PHi=Math.min(PHi,Math.max(PHn-1,0));
  $('#ph').innerHTML=P.length?`<div class="trk" id="trk">${P.map(p=>`<div class="sl"><img src="${p.img}" alt="Foto ${esc(p.t)}"><div class="cp">${esc(p.t)}<small>${fmt(p.d)}</small></div></div>`).join('')}</div>${P.length>1?'<span class="pc" id="pc"></span>':''}`:'<div class="em"><b>&#128247;</b>Belum ada foto. Ketuk di sini untuk menambah foto pertama kalian.</div>';phgo(PHi)}
