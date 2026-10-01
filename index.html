@@ -101,16 +101,37 @@ label{display:block;font-size:14px;color:#8A6B78;margin:10px 0 4px;font-weight:7
 .pic .blob{display:none}.ic .sq{position:relative}
 .bdg{position:absolute;top:-6px;right:-6px;background:#ff3b5c;color:#fff;border-radius:99px;min-width:28px;height:28px;padding:0 6px;font:800 16px Poppins,sans-serif;display:none;align-items:center;justify-content:center;border:3px solid #fff;font-style:normal}
 .cbar{display:flex;gap:8px;align-items:center;padding-bottom:10px}.cst{font-size:14px;color:#8A6B78;font-weight:600}
+
+.pt .clock{left:40px;top:70px;width:640px;height:200px}.pt .cnt{left:40px;top:286px;width:640px;height:250px}
+.pt .ph{left:40px;top:552px;width:640px;height:400px}.pt .row3{left:40px;top:972px;width:640px;gap:0;padding:0;justify-content:space-around}
+.pt .dock{left:40px;right:40px}.pt .pnl{left:40px;top:70px;width:640px;height:880px}
+.pt .win{left:20px;right:20px;top:60px;bottom:24px}.pt .cols{flex-direction:column;height:auto;min-height:100%}
+.pt .fm{width:100%!important}.pt .ls{overflow:visible}.pt .cols>.qq{height:auto;min-height:300px}
+.pt #ab div[style*="gap:22px"]{flex-direction:column}.pt .qq p{font-size:28px!important}
+.ph{touch-action:pan-y}.ph .trk{position:absolute;inset:0;display:flex;transition:transform .6s cubic-bezier(.3,1,.4,1)}
+.ph .sl{flex:none;width:100%;height:100%;position:relative}
+.ph .pc{position:absolute;top:14px;right:18px;z-index:2;font-size:14px;font-weight:700;background:rgba(0,0,0,.3);padding:2px 12px;border-radius:99px}
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.gi{padding:0;border:0;border-radius:16px;overflow:hidden;aspect-ratio:1;cursor:pointer;background:#f1d5dc}
+.gi img{width:100%;height:100%;object-fit:cover;display:block}
+#lb{position:absolute;inset:0;z-index:13;background:rgba(20,6,20,.92);display:none;align-items:center;justify-content:center;touch-action:pan-y}
+#lb.on{display:flex}#lb>img{max-width:92%;max-height:84%;object-fit:contain;border-radius:14px}
+.lc{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-weight:700;font-size:20px}.lc small{display:block;opacity:.8;font-weight:500;font-size:15px}
+.lbx,.lbd,.lbn{position:absolute;background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:99px;font:inherit;font-weight:700;cursor:pointer}
+.lbx{top:20px;right:20px;width:48px;height:48px;font-size:22px}.lbd{top:20px;left:20px;padding:12px 20px}
+.lbn{top:50%;width:52px;height:52px;font-size:34px;transform:translateY(-50%)}.lbn.l{left:16px}.lbn.r{right:16px}
+#bgm{position:absolute;left:0;top:0;width:200px;height:200px;opacity:0;pointer-events:none;z-index:-1;overflow:hidden;border-radius:14px}
+#bgm.show{opacity:1;pointer-events:auto;z-index:9}
 @media (prefers-reduced-motion:reduce){.hh,.blob,.nm i,.disc{animation:none}.in{animation-duration:.01s}}
 </style></head><body>
 <div id="holder"><div id="stage">
 <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-<div id="sb"><span id="sbt"></span><button id="lv">&hearts; Kirim sayang</button><span>&#128246; &#128267;</span></div>
+<div id="sb"><span id="sbt"></span><button id="lv">&hearts; Kirim sayang</button><span id="lvs">&#9898; Lokal</span></div>
 <div class="pgx" id="p1"><div class="w clock in"><div id="ck"></div><div id="dt"></div><div id="nxe"></div></div>
 <div class="w cnt in" style="--d:.15s" data-app="set" role="button" tabindex="0" aria-label="Pengaturan tanggal jadian">
  <div class="nm">Nopal <i>&hearts;</i> Zahra</div><div class="fn">Muhammad Naufal Alfarizi &amp; Zahra Nadia Pratiwi</div>
  <div id="dn">?</div><div id="dl">hari bersama</div><div id="ym"></div></div>
-<div class="w ph in" style="--d:.3s" data-app="mem" id="ph" role="button" tabindex="0" aria-label="Buka Memory"></div>
+<div class="w ph in" style="--d:.3s" data-app="gal" id="ph" role="button" tabindex="0" aria-label="Buka Galeri"></div>
 <div class="row3">
  <button class="ic in" style="--d:.5s" data-app="qt"><span class="sq" style="background:linear-gradient(145deg,#2ed3b7,#1a9fb8)">&#128172;</span><span>Kata Hati</span></button>
  <button class="ic in" style="--d:.6s" data-app="cal"><span class="sq" style="background:linear-gradient(145deg,#6aa8ff,#4b6cf0)">&#128197;</span><span>Kalender</span></button>
@@ -118,24 +139,34 @@ label{display:block;font-size:14px;color:#8A6B78;margin:10px 0 4px;font-weight:7
 </div>
 </div><div class="pgx" id="p2"></div><div class="w dock in" style="--d:.8s">
  <button class="ic" data-app="mem" aria-label="Memory"><span class="sq" style="background:linear-gradient(145deg,#ff8fb0,#ee4d86)">&#128248;</span><span>Memory</span></button>
+ <button class="ic" data-app="gal" aria-label="Galeri"><span class="sq" style="background:linear-gradient(145deg,#6ee7c8,#2aa6a0)">&#128444;&#65039;</span><span>Galeri</span></button>
  <button class="ic" data-app="pl" aria-label="Playlist"><span class="sq" style="background:linear-gradient(145deg,#b58cff,#7b4de8)">&#127925;</span><span>Playlist</span></button>
  <button class="ic" data-app="sr" aria-label="Surat"><span class="sq" style="background:linear-gradient(145deg,#ff7a7a,#e63a4d)">&#128140;</span><span>Surat</span></button>
  <button class="ic" data-app="wl" aria-label="Wishlist"><span class="sq" style="background:linear-gradient(145deg,#ffd76a,#ff9f3a)">&#10024;</span><span>Wishlist</span></button>
 </div>
 <div class="dots"><button class="dt on" id="d0" aria-label="Halaman 1"></button><button class="dt" id="d1" aria-label="Halaman 2"></button></div><div id="app"><div class="win"><header><button id="bk">&lsaquo; Kembali</button><h2 id="at"></h2></header><div id="ab"></div></div></div>
-<div id="ts" role="status"></div><div id="nt" role="status"></div><div id="lock" role="button" tabindex="0" aria-label="Buka kunci layar"><div id="lck"></div><div id="ldt"></div><div class="lkn">Nopal <i>&hearts;</i> Zahra</div><div id="ldn"></div><p>Ketuk untuk membuka</p></div>
+<div id="bgm"></div><div id="lb"></div><div id="ts" role="status"></div><div id="nt" role="status"></div><div id="lock" role="button" tabindex="0" aria-label="Buka kunci layar"><div id="lck"></div><div id="ldt"></div><div class="lkn">Nopal <i>&hearts;</i> Zahra</div><div id="ldn"></div><p>Ketuk untuk membuka</p></div>
 </div></div>
 <script>
+/* === ISI KONFIGURASI FIREBASE KAMU DI SINI (Project settings > Your apps > Web app) === */
+const FB={apiKey:'ISI_API_KEY',authDomain:'ISI_PROJECT.firebaseapp.com',projectId:'ISI_PROJECT_ID',appId:'ISI_APP_ID'};
 const $=s=>document.querySelector(s),K='naufal-zahra-v1',st=$('#stage');
-const DEF=()=>({date:'',mem:[],pl:[],wl:[],letter:'',chat:[],jar:[],ev:[],wall:0,snd:true,me:null,seen:0,loveSeen:0,qt:[],qo:false,wc:null,wimg:''});let D=DEF(),cur=null;
+const DEF=()=>({date:'',mem:[],pl:[],wl:[],letter:'',chat:[],jar:[],ev:[],wall:0,snd:true,me:null,seen:0,loveSeen:0,qt:[],qo:false,wc:null,wimg:'',gal:[],bgm:''});let D=DEF(),cur=null;
 try{const r=localStorage.getItem(K);if(r)D=Object.assign(D,JSON.parse(r))}catch(e){}
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 function toast(t){const e=$('#ts');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
-function save(){try{localStorage.setItem(K,JSON.stringify(D));return true}catch(e){toast('Penyimpanan penuh atau tidak tersedia');return false}}
+let FS=null,LAST={},PHs='',PHi=0,PHn=0,PHd=null,PHm=false,LBi=0,LBp=[];const SH=['mem','pl','wl','jar','qt','ev','gal'];
+const cfgS=()=>JSON.stringify({date:D.date,letter:D.letter});
+function sync(){if(!FS)return;SH.forEach(k=>{const old=LAST[k]||{},now={};D[k].forEach(x=>now[x.id]=JSON.stringify(x));
+  for(const id in now)if(old[id]!==now[id])FS.collection(k).doc(id).set(JSON.parse(now[id])).catch(()=>toast('Gagal sinkron, cek koneksi'));
+  for(const id in old)if(!(id in now))FS.collection(k).doc(id).delete().catch(()=>{});LAST[k]=now});
+ const c=cfgS();if(c!==LAST.cfg){LAST.cfg=c;FS.doc('cfg/main').set({date:D.date,letter:D.letter}).catch(()=>{})}}
+function save(){sync();try{const o=Object.assign({},D);if(FS)SH.forEach(k=>o[k]=[]);localStorage.setItem(K,JSON.stringify(o));return true}catch(e){toast('Penyimpanan penuh atau tidak tersedia');return false}}
+const photos=()=>D.gal.map(g=>({id:g.id,img:g.img,t:g.t||'',d:g.d||'',g:1})).concat(D.mem.filter(m=>m.img).map(m=>({id:m.id,img:m.img,t:m.t,d:m.d}))).sort((a,b)=>(b.d||'').localeCompare(a.d||''));
 const fmt=d=>d?new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}):'';
 const dm=(y,m,d)=>new Date(y,m,Math.min(d,new Date(y,m+1,0).getDate()));
-function fit(){const w=innerWidth,h=innerHeight,p=h>w;const s=p?Math.min(h/1280,w/720):Math.min(w/1280,h/720);st.style.transform=(p?'rotate(90deg) ':'')+'scale('+s*.98+')'}
+function fit(){const w=innerWidth,h=innerHeight,p=h>w,W=p?720:1280,H=p?1280:720;st.style.width=W+'px';st.style.height=H+'px';st.classList.toggle('pt',p);st.style.transform='scale('+Math.min(w/W,h/H)*.98+')'}
 addEventListener('resize',fit);fit();
 st.insertAdjacentHTML('afterbegin',Array.from({length:14},(_,i)=>`<span class="hh" style="left:${(i*73)%1240}px;font-size:${16+(i*7)%22}px;animation-duration:${11+(i*3)%8}s;animation-delay:${-i*1.3}s">&hearts;</span>`).join(''));
 const QT=['Hari biasa pun jadi spesial kalau ada kamu.','Terima kasih sudah bertahan, bahkan di hari-hari yang berat.','Kamu alasan aku senyum tanpa sadar.','Pelan-pelan, kita tumbuh bareng.','Apa pun rencananya, aku mau kamu ada di dalamnya.','Cerita kita belum selesai, masih banyak bab indah di depan.','Sama kamu, semuanya terasa cukup.','Kamu tempat paling nyaman buat pulang.','Jarak dan sibuk boleh datang, hati ini tetap alamatnya kamu.','Tertawa bareng kamu itu bagian favoritku dari hari ini.'];
@@ -149,8 +180,7 @@ function widgets(){
    let y=t.getFullYear()-s.getFullYear(),m=t.getMonth()-s.getMonth(),d=t.getDate()-s.getDate();
    if(d<0){m--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}if(m<0){y--;m+=12}
    $('#ym').textContent=[y?y+' tahun':'',m?m+' bulan':'',d?d+' hari':''].filter(Boolean).join(' ')}}
- const L=[...D.mem].sort((a,b)=>(b.d||'').localeCompare(a.d||'')),p=L.find(m=>m.img)||L[0];
- $('#ph').innerHTML=p?`${p.img?`<img src="${p.img}" alt="Foto ${esc(p.t)}">`:'<div class="em"><b>&#128142;</b></div>'}<div class="cp">${esc(p.t)}<small>${fmt(p.d)}</small></div>`:'<div class="em"><b>&#128247;</b>Belum ada kenangan. Ketuk di sini untuk menyimpan momen pertama kalian.</div>';
+ phr();
 }
 {const _w=widgets;widgets=function(){_w();extra()}}setInterval(widgets,15000);
 /* ---- apps ---- */
@@ -184,7 +214,7 @@ const A={
    const box=(b,t,d)=>`<div class="cd"><small>${t}</small><b>${b}</b><small>${fmt(d.toLocaleDateString('sv-SE'))}</small></div>`;
    const ms=[100,200,365,500,730,1000].map(k=>{const d=new Date(s);d.setDate(d.getDate()+k);return box(dd(d),'Hari ke-'+k.toLocaleString('id-ID'),d)}).join('');
    return `<div class="cg">${box(dd(c),'Bulanan berikutnya',c)}${box(dd(a),'Anniversary berikutnya',a)}${ms}</div>`}},
- set:{t:'Pengaturan',h:()=>`<div class="cols"><div class="fm" style="width:420px"><label for="sd">Tanggal jadian Nopal &amp; Zahra</label><input id="sd" type="date"><label>Aku adalah</label><div><button class="sw" id="m0">Nopal</button> <button class="sw" id="m1">Zahra</button></div><label style="margin-top:16px;display:flex;gap:10px;align-items:center"><input id="sn" type="checkbox" style="width:24px;height:24px;padding:0;accent-color:#E8476F"> Suara efek</label><p class="mut">Isi tersimpan di HP ini. Chat dan notifikasi sayang hanya tersinkron kalau halaman ini dibagikan ke pasanganmu dan kalian sama-sama masuk ke ourhome.</p><button class="pri" id="rs" style="background:#8A6B78">Hapus semua data</button></div><div class="ls"><label>Wallpaper bawaan</label><div class="swg" id="wp"></div><label>Warna sendiri (dua warna gradasi)</label><div style="display:flex;gap:12px"><input type="color" id="c1" aria-label="Warna 1" style="width:70px;height:48px;padding:2px"><input type="color" id="c2" aria-label="Warna 2" style="width:70px;height:48px;padding:2px"></div><label for="wf">Foto dari galeri</label><input id="wf" type="file" accept="image/*"><button class="pri" id="wr" style="background:#8A6B78">Kembalikan wallpaper bawaan</button></div></div>`,
+ set:{t:'Pengaturan',h:()=>`<div class="cols"><div class="fm" style="width:420px"><label for="sd">Tanggal jadian Nopal &amp; Zahra</label><input id="sd" type="date"><label>Aku adalah</label><div><button class="sw" id="m0">Nopal</button> <button class="sw" id="m1">Zahra</button></div><label style="margin-top:16px;display:flex;gap:10px;align-items:center"><input id="sn" type="checkbox" style="width:24px;height:24px;padding:0;accent-color:#E8476F"> Suara efek</label><p class="mut">Mode Live (Firebase): foto, memory, chat, playlist, dll tersinkron ke semua perangkat. Wallpaper &amp; backsound tersimpan per perangkat. Kalau status bar menunjukkan "Lokal", isi dulu konfigurasi Firebase di kode.</p><button class="pri" id="rs" style="background:#8A6B78">Hapus semua data (juga di server)</button></div><div class="ls"><label>Wallpaper bawaan</label><div class="swg" id="wp"></div><label>Warna sendiri (dua warna gradasi)</label><div style="display:flex;gap:12px"><input type="color" id="c1" aria-label="Warna 1" style="width:70px;height:48px;padding:2px"><input type="color" id="c2" aria-label="Warna 2" style="width:70px;height:48px;padding:2px"></div><label for="wf">Foto dari galeri</label><input id="wf" type="file" accept="image/*"><button class="pri" id="wr" style="background:#8A6B78">Kembalikan wallpaper bawaan</button></div></div>`,
   init(){$('#sd').value=D.date;$('#sd').oninput=e=>{D.date=e.target.value;save()};$('#sn').checked=D.snd;$('#sn').onchange=e=>{D.snd=e.target.checked;save()};
    const me=()=>{$('#m0').classList.toggle('on',D.me===0);$('#m1').classList.toggle('on',D.me===1)};me();$('#m0').onclick=()=>{D.me=0;save();me();badge()};$('#m1').onclick=()=>{D.me=1;save();me();badge()};
    $('#wp').innerHTML=WP.map((g,i)=>`<button class="sq2" data-w2="${i}" style="background:${g}" aria-label="Wallpaper ${i+1}"></button>`).join('');
@@ -193,7 +223,7 @@ const A={
    const col=()=>{D.wc=[$('#c1').value,$('#c2').value];D.wimg='';save();wall()};$('#c1').oninput=col;$('#c2').oninput=col;
    $('#wf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=1280;c.height=720;const x=c.getContext('2d'),k=Math.max(1280/im.width,720/im.height),w=im.width*k,h=im.height*k;x.drawImage(im,(1280-w)/2,(720-h)/2,w,h);const old=D.wimg;D.wimg=c.toDataURL('image/jpeg',.72);if(!save()){D.wimg=old;return}wall();toast('Wallpaper diganti')};im.src=r.result};r.readAsDataURL(f)};
    $('#wr').onclick=()=>{D.wc=null;D.wimg='';D.wall=0;save();wall();toast('Wallpaper bawaan')};
-   let a=false;$('#rs').onclick=()=>{if(!a){a=true;$('#rs').textContent='Tekan sekali lagi untuk menghapus';$('#rs').style.background='#c2274f';return}D=DEF();CH=[];save();wall();closeApp();toast('Data lokal dihapus')}}},
+   let a=false;$('#rs').onclick=()=>{if(!a){a=true;$('#rs').textContent='Tekan sekali lagi untuk menghapus';$('#rs').style.background='#c2274f';return}D=DEF();CH=[];save();wall();loadBgm();closeApp();toast('Semua data dihapus')}}},
  chat:{t:'Pesan',h:()=>`<div class="ch"><div class="cbar"><span class="cst" id="cst"></span><span style="flex:1"></span><span class="mut">Aku:</span><button class="sw" id="s0">Nopal</button><button class="sw" id="s1">Zahra</button></div><div class="cm" id="cm"></div><div class="cb"><input id="ci" maxlength="200" placeholder="Tulis pesan..." aria-label="Pesan"><button class="pri" id="cs" style="margin:0">Kirim</button></div></div>`,
   list(){const m=$('#cm');if(!m)return;const f=t=>typeof t==='number'?new Date(t).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):esc(t||'');
    $('#s0').classList.toggle('on',D.me===0);$('#s1').classList.toggle('on',D.me===1);
@@ -222,15 +252,25 @@ const A={
    c.onpointerup=c.onpointercancel=()=>{dr=false};
    $('#er').onclick=()=>{col='#ffffff'};$('#cl').onclick=()=>{x.fillStyle='#fff';x.fillRect(0,0,820,440)};
    $('#sv').onclick=()=>{D.mem.push({id:uid(),t:'Coretan kita',d:new Date().toLocaleDateString('sv-SE'),s:'',img:c.toDataURL('image/jpeg',.75)});if(save())toast('Disimpan ke Memory');else D.mem.pop()}}},
+ gal:{t:'Galeri',h:()=>`<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px"><label class="pri" style="margin:0;cursor:pointer;display:inline-block">+ Tambah foto<input id="gf" type="file" accept="image/*" multiple hidden></label><span class="mut" id="gc"></span></div><div class="gg" id="gg"></div>`,
+  list(){const P=photos();$('#gc').textContent=P.length+' foto';$('#gg').innerHTML=P.length?P.map((p,i)=>`<button class="gi" data-pv="${i}" aria-label="Buka foto"><img src="${p.img}" alt="${esc(p.t||'Foto')}" loading="lazy"></button>`).join(''):'<p class="empty" style="grid-column:1/-1">Belum ada foto. Tambah foto pertama kalian &#128247;</p>'},
+  init(){$('#gf').onchange=async e=>{const fs=[...e.target.files];e.target.value='';let n=0;for(const f of fs){try{const img=await comp(f,900,.72);D.gal.push({id:uid(),img,d:new Date().toLocaleDateString('sv-SE')});if(!save()){D.gal.pop();break}n++;if(cur==='gal')A.gal.list()}catch(x){}}toast(n?n+' foto ditambahkan':'Gagal menambah foto')}}},
+ bgm:{t:'Backsound',h:()=>`<div class="fm" style="width:100%;max-width:520px"><label for="bu">Link Spotify atau YouTube</label><input id="bu" inputmode="url" placeholder="https://open.spotify.com/track/... atau https://youtu.be/..."><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="pri" id="bp">Putar</button><button class="pri" id="bx" style="background:#8A6B78">Matikan</button></div><p class="mut">YouTube langsung main otomatis dan berulang. Spotify: tekan play sekali di pemutar di bawah (tanpa login Spotify hanya cuplikan 30 detik). Setelah itu jendela ini boleh ditutup, musik tetap jalan. Tersimpan di perangkat ini.</p></div><div id="bsl" style="width:100%;max-width:420px;height:152px;border-radius:14px;margin-top:6px"></div>`,
+  init(){$('#bu').value=D.bgm;const sz=()=>{const p=bgmParse(D.bgm);$('#bsl').style.height=p&&p.k==='yt'?'236px':'152px';return p};
+   $('#ab').onscroll=bgmShow;if(sz()){loadBgm();setTimeout(bgmShow,400)}
+   $('#bp').onclick=()=>{const u=$('#bu').value.trim();if(!bgmParse(u)){toast('Link belum dikenali, pakai link Spotify atau YouTube');return}D.bgm=u;save();loadBgm();sz();setTimeout(bgmShow,60);toast('Backsound diatur')};
+   $('#bx').onclick=()=>{D.bgm='';save();loadBgm();bgmHide();$('#bu').value='';toast('Backsound dimatikan')}}},
  ev:{t:'Acara & Countdown',h:()=>`<div class="cols"><div class="fm"><label for="et">Acara</label><input id="et" maxlength="50" placeholder="Contoh: Ketemu lagi"><label for="ed">Tanggal</label><input id="ed" type="date"><button class="pri" id="eadd">Tambah acara</button></div><div class="ls" id="el"></div></div>`,
   list(){const n=new Date();n.setHours(0,0,0,0);const L=[...D.ev].sort((a,b)=>a.d.localeCompare(b.d));$('#el').innerHTML=L.length?L.map(e=>{const k=Math.round((new Date(e.d+'T00:00:00')-n)/864e5);return `<div class="it"><div class="cd" style="min-width:150px"><b>${Math.abs(k)}</b><small>${k===0?'Hari ini!':k>0?'hari lagi':'hari lalu'}</small></div><div style="flex:1"><h3>${esc(e.t)}</h3><span class="mut">${fmt(e.d)}</span><br><button class="x" data-k="ev" data-i="${e.id}">Hapus</button></div></div>`}).join(''):'<p class="empty">Belum ada acara. Tambah tanggal ketemu, ulang tahun, atau liburan &#127881;</p>'},
   init(){$('#eadd').onclick=()=>{const t=$('#et').value.trim(),d=$('#ed').value;if(!t||!d){toast('Isi acara dan tanggalnya ya');return}D.ev.push({id:uid(),t,d});save();$('#et').value='';A.ev.list();SN.tap()}}}
 };
 function openApp(k){cur=k;SN.tap();const a=A[k];$('#at').textContent=a.t;$('#ab').innerHTML=a.h();a.init&&a.init();a.list&&a.list();$('#ab').scrollTop=0;$('#app').classList.add('on');const w=document.querySelector('.win');w.style.animation='none';void w.offsetWidth;w.style.animation=''}
-function closeApp(){$('#app').classList.remove('on');cur=null;widgets();badge()}
+function closeApp(){bgmHide();$('#lb').classList.remove('on');$('#app').classList.remove('on');cur=null;widgets();badge()}
 $('#bk').onclick=closeApp;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cur)closeApp();if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.app&&e.target.tagName!=='BUTTON'){e.preventDefault();openApp(e.target.dataset.app)}});
 document.addEventListener('click',e=>{
+ const v=e.target.closest('[data-pv]');if(v){lb(+v.dataset.pv);return}
+ const q=e.target.closest('[data-lb]');if(q){const a=q.dataset.lb;if(a==='x')$('#lb').classList.remove('on');else if(a==='d'){if(!confirm('Hapus foto ini untuk berdua?'))return;const p=LBp[LBi];D.gal=D.gal.filter(x=>x.id!==p.id);save();A.gal.list();lb(LBi)}else lb(LBi+ +a);return}
  const b=e.target.closest('[data-k]');if(b){const k=b.dataset.k;if(k==='chat'){chDel(b.dataset.i);return}D[k]=D[k].filter(x=>x.id!==b.dataset.i);save();A[k].list();return}
  const o=e.target.closest('[data-app]');if(o&&!cur)openApp(o.dataset.app)});
 document.addEventListener('change',e=>{const w=e.target.dataset&&e.target.dataset.w;if(!w)return;const it=D.wl.find(x=>x.id===w);if(it){it.ok=e.target.checked;save();A.wl.list()}});
@@ -246,14 +286,14 @@ function extra(){const t=new Date();t.setHours(0,0,0,0);
  $('#nxe').textContent=up?up.t+': '+(up.k===0?'hari ini!':up.k+' hari lagi'):'';
  $('#lck').textContent=$('#ck').textContent;$('#ldt').textContent=$('#dt').textContent;
  $('#ldn').textContent=$('#dn').textContent!=='?'?$('#dn').textContent+' hari bersama':''}
-const IC=[['chat','&#128241;','Pesan','#5ad1ff,#2b8ef0'],['tny','&#127183;','Tanya Jawab','#ff9ec4,#e8477f'],['kcn','&#127905;','Date Roulette','#ffb86b,#ff6a3d'],['jar','&#127855;','Toples Sayang','#ffd76a,#e8a020'],['cor','&#127912;','Coretan','#7be0a0,#2fae74'],['ev','&#9203;','Acara','#c3a1ff,#7b4de8']];
+const IC=[['chat','&#128241;','Pesan','#5ad1ff,#2b8ef0'],['tny','&#127183;','Tanya Jawab','#ff9ec4,#e8477f'],['kcn','&#127905;','Date Roulette','#ffb86b,#ff6a3d'],['jar','&#127855;','Toples Sayang','#ffd76a,#e8a020'],['cor','&#127912;','Coretan','#7be0a0,#2fae74'],['ev','&#9203;','Acara','#c3a1ff,#7b4de8'],['bgm','&#127911;','Backsound','#ff8fd0,#b04df0']];
 $('#p2').innerHTML=`<div class="w pnl"><div class="g3">${IC.map(a=>`<button class="ic" data-app="${a[0]}"><span class="sq" style="background:linear-gradient(145deg,${a[3]})">${a[1]}${a[0]==='chat'?'<i class="bdg" id="bdg"></i>':''}</span><span>${a[2]}</span></button>`).join('')}</div></div>`;
 function setPage(n){st.classList.toggle('pg2',n===1);$('#d0').classList.toggle('on',n===0);$('#d1').classList.toggle('on',n===1)}
 $('#d0').onclick=()=>setPage(0);$('#d1').onclick=()=>setPage(1);
-let sx=null;st.addEventListener('pointerdown',e=>{sx=(cur||e.target.closest('input,textarea,canvas,#lock'))?null:e.clientX});
+let sx=null;st.addEventListener('pointerdown',e=>{sx=(cur||e.target.closest('input,textarea,canvas,#lock')||(PHn>1&&e.target.closest('#ph')))?null:e.clientX});
 st.addEventListener('pointerup',e=>{if(sx==null)return;const dx=e.clientX-sx;sx=null;if(dx<-70)setPage(1);else if(dx>70)setPage(0)});
 function notify(t,b){const n=$('#nt');if(t==null){t='&#128140; Kata Hati';const P=pool();b=P[Math.floor(Math.random()*P.length)]}n.innerHTML='<b>'+t+'</b>'+esc(b);n.classList.add('on');SN.chime();clearTimeout(notify.h);notify.h=setTimeout(()=>n.classList.remove('on'),5200)}
-const unlock=()=>{const l=$('#lock');if(l.classList.contains('up'))return;SN.tap();l.classList.add('up');setTimeout(()=>{l.style.display='none';notify()},650)};
+const unlock=()=>{const l=$('#lock');if(l.classList.contains('up'))return;SN.tap();loadBgm();l.classList.add('up');setTimeout(()=>{l.style.display='none';notify()},650)};
 $('#lock').onclick=unlock;$('#lock').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();unlock()}};
 const pool=()=>D.qo&&D.qt.length?D.qt.map(q=>q.t):QT.concat(D.qt.map(q=>q.t));
 let DB=null,RM=null,CH=D.chat.slice();
@@ -271,13 +311,43 @@ function loveSend(){if(D.me==null){notify('Siapa kamu?','Pilih dulu kamu Nopal a
  if(RM)RM.emit('love',{f,ts,q}).catch(()=>{});if(DB)DB.doc('love/last').set({f,ts,q}).catch(()=>{});
  notify('&#128151; Sayang terkirim',(RM||DB)?'Notifikasi dikirim ke '+to+'. Dia akan melihatnya begitu halaman ini terbuka di HP-nya.':'Mode lokal: '+to+' belum bisa menerimanya karena halaman ini belum terhubung.')}
 $('#lv').onclick=loveSend;
+const ld=u=>new Promise((o,r)=>{const e=document.createElement('script');e.src=u;e.onload=o;e.onerror=r;document.head.appendChild(e)});
+const live=on=>{$('#lvs').innerHTML=on?'&#128994; Live':'&#9898; Lokal'};
+function refresh(){widgets();if(cur&&cur!=='chat'&&A[cur].list)A[cur].list()}
 async function net(){let first=true;
- try{if(!window.claude||!claude.use)return;DB=await claude.use('db');RM=await claude.use('room')}catch(e){}
- if(DB){try{DB.collection('chat').limit(300).onSnapshot(sn=>{CH=sn.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(a.ts||0)-(b.ts||0));
-   if(!first)sn.docChanges().forEach(c=>{if(c.type==='added'&&!c.doc.metadata.hasPendingWrites){const m=c.doc.data();if(m.w!==D.me)incoming(m)}});first=false;badge();if(cur==='chat')A.chat.list()},()=>{DB=null;CH=D.chat.slice();if(cur==='chat')A.chat.list()});
-   DB.doc('love/last').onSnapshot(sn=>{if(sn.exists)lovein(sn.data())},()=>{})}catch(e){DB=null}}
- if(RM){try{RM.on('love',m=>{if(!m.isMe)lovein(m.data)},()=>{})}catch(e){}}
+ try{if(!FB.apiKey||/^ISI/.test(FB.apiKey))throw 0;const V='https://www.gstatic.com/firebasejs/10.12.2/';
+  await ld(V+'firebase-app-compat.js');await ld(V+'firebase-firestore-compat.js');firebase.initializeApp(FB);FS=DB=firebase.firestore()}
+ catch(e){FS=DB=null;live(false);if(cur==='chat')A.chat.list();return}
+ live(true);LAST.cfg=cfgS();sync();
+ SH.forEach(k=>FS.collection(k).onSnapshot(sn=>{D[k]=sn.docs.map(d=>Object.assign({},d.data(),{id:d.id}));const m={};D[k].forEach(x=>m[x.id]=JSON.stringify(x));LAST[k]=m;refresh()},()=>live(false)));
+ FS.doc('cfg/main').onSnapshot(sn=>{if(!sn.exists){LAST.cfg='';sync();return}const v=sn.data(),t=$('#lt');
+  D.date=v.date||'';if(!(cur==='sr'&&document.activeElement===t))D.letter=v.letter||'';LAST.cfg=JSON.stringify({date:v.date||'',letter:v.letter||''});
+  if(cur==='sr'&&t&&document.activeElement!==t)t.value=D.letter;if(cur==='set'&&document.activeElement!==$('#sd'))$('#sd').value=D.date;widgets()},()=>{});
+ FS.collection('chat').limit(300).onSnapshot(sn=>{CH=sn.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(a.ts||0)-(b.ts||0));
+  if(!first)sn.docChanges().forEach(c=>{if(c.type==='added'&&!c.doc.metadata.hasPendingWrites){const m=c.doc.data();if(m.w!==D.me)incoming(m)}});first=false;badge();if(cur==='chat')A.chat.list()},()=>{});
+ FS.doc('love/last').onSnapshot(sn=>{if(sn.exists)lovein(sn.data())},()=>{});
  if(cur==='chat')A.chat.list()}
+/* ---- carousel foto, lightbox, backsound ---- */
+function phr(){const P=photos().slice(0,12),sig=P.map(p=>p.id).join();if(sig===PHs)return;PHs=sig;PHn=P.length;PHi=Math.min(PHi,Math.max(PHn-1,0));
+ $('#ph').innerHTML=P.length?`<div class="trk" id="trk">${P.map(p=>`<div class="sl"><img src="${p.img}" alt="Foto ${esc(p.t)}"><div class="cp">${esc(p.t)}<small>${fmt(p.d)}</small></div></div>`).join('')}</div>${P.length>1?'<span class="pc" id="pc"></span>':''}`:'<div class="em"><b>&#128247;</b>Belum ada foto. Ketuk di sini untuk menambah foto pertama kalian.</div>';phgo(PHi)}
+function phgo(i){if(!PHn)return;PHi=(i+PHn)%PHn;const t=$('#trk');if(t)t.style.transform='translateX('+(-PHi*100)+'%)';const c=$('#pc');if(c)c.textContent=(PHi+1)+'/'+PHn}
+{const ph=$('#ph');ph.addEventListener('pointerdown',e=>{PHd=e.clientX;PHm=false});
+ ph.addEventListener('pointerup',e=>{if(PHd==null)return;const dx=e.clientX-PHd;PHd=null;if(PHn>1&&Math.abs(dx)>40){PHm=true;phgo(PHi+(dx<0?1:-1))}});
+ ph.addEventListener('pointercancel',()=>{PHd=null});ph.addEventListener('click',e=>{if(PHm){e.stopPropagation();PHm=false}},true);
+ setInterval(()=>{if(!cur&&PHn>1&&PHd==null&&!$('#lock').classList.contains('up')===false)phgo(PHi+1)},4500)}
+const comp=(f,m,q)=>new Promise((ok,no)=>{const r=new FileReader();r.onerror=no;r.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(f)});
+function lb(i){LBp=photos();const L=$('#lb');if(!LBp.length){L.classList.remove('on');return}LBi=(i+LBp.length)%LBp.length;const p=LBp[LBi];
+ L.innerHTML=`<img src="${p.img}" alt="Foto"><div class="lc">${esc(p.t)}<small>${fmt(p.d)}</small></div><button class="lbx" data-lb="x" aria-label="Tutup">&#10005;</button><button class="lbn l" data-lb="-1" aria-label="Sebelumnya">&lsaquo;</button><button class="lbn r" data-lb="1" aria-label="Berikutnya">&rsaquo;</button>${p.g?'<button class="lbd" data-lb="d">Hapus</button>':''}`;L.classList.add('on')}
+{let x0=null;const L=$('#lb');L.addEventListener('pointerdown',e=>{x0=e.clientX});L.addEventListener('pointerup',e=>{if(x0==null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>50)lb(LBi+(dx<0?1:-1))})}
+function bgmParse(u){u=(u||'').trim();let m=u.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|episode|show|artist)\/([A-Za-z0-9]+)/);
+ if(m)return{k:'sp',src:'https://open.spotify.com/embed/'+m[1]+'/'+m[2]+'?utm_source=generator'};if(!/youtu/i.test(u))return null;
+ m=u.match(/(?:youtu\.be\/|[?&]v=|\/shorts\/|\/embed\/|\/live\/)([\w-]{11})/);if(m)return{k:'yt',src:'https://www.youtube.com/embed/'+m[1]+'?autoplay=1&loop=1&playlist='+m[1]+'&playsinline=1'};
+ m=u.match(/[?&]list=([\w-]+)/);if(m)return{k:'yt',src:'https://www.youtube.com/embed/videoseries?list='+m[1]+'&autoplay=1&loop=1&playsinline=1'};return null}
+function loadBgm(){const b=$('#bgm'),p=bgmParse(D.bgm),src=p?p.src:'';if(loadBgm.s===src)return;loadBgm.s=src;b.dataset.k=p?p.k:'';
+ b.innerHTML=p?'<iframe src="'+src+'" allow="autoplay; encrypted-media; clipboard-write" style="width:100%;height:100%;border:0"></iframe>':''}
+function bgmShow(){const b=$('#bgm'),sp=$('#bsl'),w=document.querySelector('.win');if(!sp||!b.dataset.k||cur!=='bgm')return;b.classList.add('show');
+ b.style.cssText='left:'+(w.offsetLeft+sp.offsetLeft)+'px;top:'+(w.offsetTop+sp.offsetTop-$('#ab').scrollTop)+'px;width:'+sp.offsetWidth+'px;height:'+sp.offsetHeight+'px'}
+function bgmHide(){const b=$('#bgm');b.classList.remove('show');b.style.cssText=''}
 net();
 wall();widgets();
 </script></body></html>
